@@ -7,6 +7,7 @@
         </div>
         <div class="col-12 col-md-6 col-xl-4" v-else>
             <CardComponent>
+                <h5><strong>New Customer Registration</strong></h5>
                 <form method="POST" @submit.prevent="registerNewCustomer">
                     <div class="row">
                         <div class="col-12">
@@ -53,6 +54,7 @@
                     </div>
                 </form>
             </CardComponent>
+            <hr/>
         </div>
     </center>
 </template>
@@ -93,7 +95,6 @@ export default {
             } else {
                 this.formValidationAlert = false;
             }
-
             await axios.post(this.registrationEndPoint, {
                 "id": `cid${Date.now()}`,
                 "firstName": this.firstName,
@@ -108,7 +109,6 @@ export default {
             .catch(function (error) {
                 console.log(error);
             });
-
             // Reset input
             this.firstName = null;
             this.lastName = null;
@@ -129,11 +129,9 @@ label::after {
     margin-left: 3px;
     color: red;
 }
-
 .toggle-btn-registration {
     width: auto;
 }
-
 @media (max-width: 768px) {
     .toggle-btn-registration {
         width: 100%;

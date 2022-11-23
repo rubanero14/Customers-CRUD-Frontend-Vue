@@ -14,7 +14,6 @@
     </div>
 </template>
 <script>
-
 </script>
 <style scoped>
 .centered {
@@ -26,29 +25,24 @@
     width: 100%;
     height: 100%;
 }
-
 .spinner {
     position: relative;
     top: 50%;
     left: 45%;
 }
-
  /* Spinner Section */
 .spinner-grow{
     width: 1rem !important;
     height: 1rem !important;
 }
-
 .spinner-grow.one {
     animation: 0.75s linear infinite spinner-grow;
     animation-delay: 0s;
 }
-
  .spinner-grow.two {
     animation: 0.75s linear infinite spinner-grow;
     animation-delay: 0.15s;
  }
-
  .spinner-grow.three {
     animation: 0.75s linear infinite spinner-grow;
     animation-delay: 0.3s;

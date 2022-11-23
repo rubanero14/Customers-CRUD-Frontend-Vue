@@ -11,7 +11,6 @@ import AHHeader from './components/UI/AHHeader.vue';
 import AHBody from './components/UI/AHBody.vue';
 import AHFooter from './components/UI/AHFooter.vue';
 import LoadingSpinner from './components/UI/LoadingSpinner.vue'
-
 export default {
   name: 'Customers-Frontend',
   components: {
@@ -53,13 +52,11 @@ export default {
 <style>
 @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css');
 @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css');
-
 /*Vue Animation*/ 
 .pop-enter-from, .pop-leave-to {
   opacity: 0;
   transform: scale(0);
 }
-
 .pop-enter-active {
   transition: all 0.2s ease-out;
 }
@@ -70,7 +67,6 @@ export default {
   opacity: 1;
   transform: scale(1);
 }
-
 .button-enter-from {
   opacity: 0;
   transform: rotateX(-180deg);
@@ -89,7 +85,6 @@ export default {
   opacity: 1;
   transform: rotateX(0);
 }
-
 .slide-fade-enter-from {
   opacity: 0;
   transform: translateX(-50px);
@@ -108,7 +103,6 @@ export default {
   opacity: 1;
   transform: translateX(0);
 }
-
 .alert-enter-from {
   opacity: 1;
   transform: translateY(-10px);

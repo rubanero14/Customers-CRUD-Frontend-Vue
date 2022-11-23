@@ -2,7 +2,6 @@
     <div class="container">
         <div class="row">
             <CreateCustomer class="mb-3" />
-            <hr>
             <AHCustomersList :customers="this.customers"/>
         </div>
     </div>
@@ -10,7 +9,6 @@
 <script>
 import AHCustomersList from './AHCustomerList.vue';
 import CreateCustomer from './CreateCustomer.vue';
-
 export default {
     props: ['customers'],
     components: {
@@ -25,5 +23,4 @@ export default {
 }
 </script>
 <style scoped>
-
 </style>

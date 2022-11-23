@@ -1,57 +1,43 @@
 <template>
     <div class="col-12" v-if="customers.length > 0">
         <center>
-            <transition v-if="!isViewDetails" 
-                :key="this.index"
-                appear
-                name="fade"
-                mode="out-in"
-            >
-                <center :style="{ '--i': this.index }">
-                    <CardComponent v-for="customer of customers" :key="customer.id" :id="customer.id">
-                        <div>
-                            <p class="d-inline-block mb-2">Customer ID: <strong>{{customer.id}}</strong></p>
-                            <br/>
-                            <p class="d-inline-block mb-2">Customer Name: <strong>{{customer.firstName + ' ' + customer.lastName}}</strong></p>
-                            <br/>
-                            <p class="d-inline-block mb-2">Customer Age: <strong>{{customer.age}}</strong></p>
-                            <br/>
-                            <button class="d-block btn btn-outline-success" @click="viewDetails(customer)"><i class="bi bi-info-circle"></i> View Details</button>
-                        </div>
+            <div v-if="!isViewDetails" >
+                <transition
+                    v-for="(customer, index) in customers"
+                    :key="index"
+                    appear
+                    name="fade"
+                    mode="out-in"
+                >   
+                    <CardComponent :key="customer.id" :id="customer.id">
+                        <center :style="{ '--i': index }">
+                            <div>
+                                <p>Customer ID: <strong>{{customer.id}}</strong></p>
+                                <p>Customer Name: <strong>{{customer.firstName + ' ' + customer.lastName}}</strong></p>
+                                <p>Customer Age: <strong>{{customer.age}}</strong></p>
+                                <button class="d-block btn btn-outline-success" @click="viewDetails(customer)"><i class="bi bi-info-circle"></i> View Details</button>
+                            </div>
+                        </center>
                     </CardComponent>
-                </center>
-            </transition>
+                </transition>
+            </div>
             <transition v-else>
                 <CardComponent>
-                    <div v-if="!isEditDetail">
-                        <div class="row" :id="customer.id">
-                            <div class="col-12">
-                                <p>Customer ID: <strong>{{customer.id}}</strong></p>
-                            </div>
-                            <div class="col-12">
-                                <p>Customer Name: <strong>{{customer.firstName + ' ' + customer.lastName}}</strong></p>
-                            </div>
-                            <div class="col-12">
-                                <p>Customer Age: <strong>{{customer.age}}</strong></p>
-                            </div>
-                            <div class="col-12">
-                                <p>Customer Mobile No: <strong>{{customer.moBileNo}}</strong></p>
-                            </div>
-                            <div class="col-12">
-                                <p>Customer Email: <strong>{{customer.email}}</strong></p>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-outline-primary mb-2" @click="deleteCustomer(customer.id)"><i class="bi bi-trash"></i> Delete</button>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-outline-success mb-2" @click="editDetails(customer)"><i class="bi bi-pencil-square"></i> Edit</button>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-outline-danger mb-2" @click="this.isViewDetails = false"><i class="bi bi-arrow-left"></i> Back</button>
-                            </div>
+                    <center>
+                        <div :id="customer.id" v-if="!isEditDetail">
+                            <p>Customer ID: <strong>{{customer.id}}</strong></p>
+                            <p>Customer Name: <strong>{{customer.firstName + ' ' + customer.lastName}}</strong></p>
+                            <p>Customer Mobile No: <strong>{{customer.moBileNo}}</strong></p>
+                            <p>Customer Age: <strong>{{customer.age}}</strong></p>
+                            <p>Customer Email: <strong>{{customer.email}}</strong></p>
+                            <button class="btn btn-outline-primary mb-2" @click="deleteCustomer(customer.id)"><i class="bi bi-trash"></i> Delete</button>
+                            <br/>
+                            <button class="btn btn-outline-success mb-2" @click="editDetails(customer)"><i class="bi bi-pencil-square"></i> Edit</button>
+                            <br/>
+                            <button class="btn btn-outline-danger mb-2" @click="this.isViewDetails = false"><i class="bi bi-arrow-left"></i> Back</button>
                         </div>
-                    </div>
-                    <UpdateCustomer :customer="customer" @toggle-edit="newValue => isEditDetail = newValue" :isEditDetail="isEditDetail" v-else/>
+                        <UpdateCustomer :customer="customer" @toggle-edit="newValue => isEditDetail = newValue" :isEditDetail="isEditDetail" v-else/>
+                    </center>
                 </CardComponent>
             </transition>
         </center>
@@ -117,43 +103,35 @@ export default {
 .btn {
     width: 300px;
 }
-
 p {
     text-align: center;
 }
-
 @media (max-width: 768px) {
     .btn {
         width: 100%;
     }
-
     p {
         text-align: start;
     }
 }
-
 /* Declared variable --i is used to dynamically calculate transition time */
 .fade-enter-active {
     transition: all 0.5s ease-in-out;
     transition-delay: calc(var(--i) * 0.05s);
   }
-
   .fade-leave-active {
     transition: all 0.5s ease-in-out;
     transition-delay: calc(var(--i) * 0.05s);
     
   }
-
   .fade-enter-from {
     opacity: 0;
     transform: translateX(-15px);
   }
-
   .fade-leave-to {
     opacity: 0;
     transform: translateX(15px);
   }
-
   .fade-enter-to,
   .fade-leave-from {
     opacity: 1;

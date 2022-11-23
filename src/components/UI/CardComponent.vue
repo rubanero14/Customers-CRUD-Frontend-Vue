@@ -4,7 +4,6 @@
     </div>
 </template>
 <script>
-
 </script>
 <style scoped>
 .card {
@@ -18,22 +17,18 @@
     padding: 30px;
     width: fit-content;
 }
-
 .card.logo {
     height: 120px;
     width: 120px;
     border-radius: 20px;
     overflow: hidden;
 }
-
 .card.tile {
     border-radius: 8px;
 }
-
 .card.logo:hover {
     transform: scale(0.85);
 }
-
 @media (min-width: 768px) and (max-width: 992px) {
     .card.logo {
         height: 80px;
@@ -48,7 +43,6 @@
         border-radius: 8px;
     }
 }
-
 @media (min-width: 300px) and (max-width: 476px) {
     .card.logo {
         height: 50px;
@@ -56,7 +50,6 @@
         border-radius: 4px;
     }
 }
-
 @media (max-width: 300px) {
     .card.logo {
         height: 40px;
