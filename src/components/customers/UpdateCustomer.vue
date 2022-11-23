@@ -35,10 +35,10 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <button class="btn btn-primary w-100 mb-2" type="submit">Update Details</button>
+                        <button class="btn btn-outline-success w-100 mb-2" type="submit"><i class="bi bi-pencil-square"></i> Update Details</button>
                     </div>
                     <div class="col-12">
-                        <button class="btn btn-danger w-100" @click="closeEdit(false)">Cancel</button>
+                        <button class="btn btn-outline-danger w-100" @click="closeEdit(false)"><i class="bi bi-arrow-left"></i> Back</button>
                     </div>
                 </div>
             </form>

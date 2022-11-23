@@ -1,7 +1,9 @@
 <template>
     <center>
-        <div class="d-flex justify-content-center align-items-center justify-content-md-end" v-if="!showRegistrationForm">
-            <button class="btn btn-primary mb-3" @click="toggleRegistrationForm">Add New Customer</button>
+        <div class="col-12" v-if="!showRegistrationForm">
+            <a class="toggle-btn-registration btn btn-outline-secondary mb-3 me-2" target="_blank" href="https://github.com/rubanero14/Customers-CRUD-Backend-Node"><i class="bi bi-code-slash"></i> Source Code Backend</a>
+            <a class="toggle-btn-registration btn btn-outline-secondary mb-3 me-2" target="_blank" href="https://github.com/rubanero14/Customers-CRUD-Frontend-Vue"><i class="bi bi-code-slash"></i> Source Code Frontend</a>
+            <button class="toggle-btn-registration btn btn-outline-primary mb-3" @click="toggleRegistrationForm"><i class="bi bi-plus-lg"></i> Add New Customer</button>
         </div>
         <div class="col-12 col-md-6 col-xl-4" v-else>
             <CardComponent>
@@ -38,10 +40,10 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button class="btn btn-primary w-100 mb-2" type="submit">Create New Customer</button>
+                            <button class="btn btn-outline-success w-100 mb-2" type="submit"><i class="bi bi-plus-lg"></i> Create New Customer</button>
                         </div>
                         <div class="col-12">
-                            <button :class="{'mb-2':formValidationAlert, '': !formValidationAlert}" class="btn btn-danger w-100" type="submit" @click="toggleRegistrationForm">Cancel</button>
+                            <button :class="{'mb-2':formValidationAlert, '': !formValidationAlert}" class="btn btn-outline-danger w-100" type="submit" @click="toggleRegistrationForm"><i class="bi bi-arrow-left"></i> Back</button>
                         </div>
                     </div>
                     <div class="row" v-if="formValidationAlert">
@@ -126,5 +128,15 @@ label::after {
     content: '*';
     margin-left: 3px;
     color: red;
+}
+
+.toggle-btn-registration {
+    width: auto;
+}
+
+@media (max-width: 768px) {
+    .toggle-btn-registration {
+        width: 100%;
+    }
 }
 </style>

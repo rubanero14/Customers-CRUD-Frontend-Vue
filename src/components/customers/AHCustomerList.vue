@@ -1,46 +1,53 @@
 <template>
     <div class="col-12" v-if="customers.length > 0">
         <center>
-            <transition-group v-if="!isViewDetails">
-                <CardComponent v-for="customer of customers" :key="customer.id" :id="customer.id">
-                    <div>
-                        <p class="d-inline-block mb-2">Customer ID: {{customer.id}}</p>
-                        <br/>
-                        <p class="d-inline-block mb-2">Customer Name: {{customer.firstName + ' ' + customer.lastName}}</p>
-                        <br/>
-                        <p class="d-inline-block mb-2">Customer Age: {{customer.age}}</p>
-                        <br/>
-                        <button class="d-block btn btn-primary" @click="viewDetails(customer)">View Details</button>
-                    </div>
-                </CardComponent>
-            </transition-group>
+            <transition v-if="!isViewDetails" 
+                :key="this.index"
+                appear
+                name="fade"
+                mode="out-in"
+            >
+                <center :style="{ '--i': this.index }">
+                    <CardComponent v-for="customer of customers" :key="customer.id" :id="customer.id">
+                        <div>
+                            <p class="d-inline-block mb-2">Customer ID: <strong>{{customer.id}}</strong></p>
+                            <br/>
+                            <p class="d-inline-block mb-2">Customer Name: <strong>{{customer.firstName + ' ' + customer.lastName}}</strong></p>
+                            <br/>
+                            <p class="d-inline-block mb-2">Customer Age: <strong>{{customer.age}}</strong></p>
+                            <br/>
+                            <button class="d-block btn btn-outline-success" @click="viewDetails(customer)"><i class="bi bi-info-circle"></i> View Details</button>
+                        </div>
+                    </CardComponent>
+                </center>
+            </transition>
             <transition v-else>
                 <CardComponent>
                     <div v-if="!isEditDetail">
                         <div class="row" :id="customer.id">
                             <div class="col-12">
-                                <p>Customer ID: {{customer.id}}</p>
+                                <p>Customer ID: <strong>{{customer.id}}</strong></p>
                             </div>
                             <div class="col-12">
-                                <p>Customer Name: {{customer.firstName + ' ' + customer.lastName}}</p>
+                                <p>Customer Name: <strong>{{customer.firstName + ' ' + customer.lastName}}</strong></p>
                             </div>
                             <div class="col-12">
-                                <p>Customer Age: {{customer.age}}</p>
+                                <p>Customer Age: <strong>{{customer.age}}</strong></p>
                             </div>
                             <div class="col-12">
-                                <p>Customer Mobile No: {{customer.moBileNo}}</p>
+                                <p>Customer Mobile No: <strong>{{customer.moBileNo}}</strong></p>
                             </div>
                             <div class="col-12">
-                                <p>Customer Email: {{customer.email}}</p>
+                                <p>Customer Email: <strong>{{customer.email}}</strong></p>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary mb-2" @click="deleteCustomer(customer.id)">Delete</button>
+                                <button class="btn btn-outline-primary mb-2" @click="deleteCustomer(customer.id)"><i class="bi bi-trash"></i> Delete</button>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-success mb-2" @click="editDetails(customer)">Edit</button>
+                                <button class="btn btn-outline-success mb-2" @click="editDetails(customer)"><i class="bi bi-pencil-square"></i> Edit</button>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-danger mb-2" @click="this.isViewDetails = false">Back</button>
+                                <button class="btn btn-outline-danger mb-2" @click="this.isViewDetails = false"><i class="bi bi-arrow-left"></i> Back</button>
                             </div>
                         </div>
                     </div>
@@ -124,4 +131,31 @@ p {
         text-align: start;
     }
 }
+
+/* Declared variable --i is used to dynamically calculate transition time */
+.fade-enter-active {
+    transition: all 0.5s ease-in-out;
+    transition-delay: calc(var(--i) * 0.05s);
+  }
+
+  .fade-leave-active {
+    transition: all 0.5s ease-in-out;
+    transition-delay: calc(var(--i) * 0.05s);
+    
+  }
+
+  .fade-enter-from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+
+  .fade-leave-to {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+
+  .fade-enter-to,
+  .fade-leave-from {
+    opacity: 1;
+  }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <AHHeader></AHHeader>
-  <AHBody :customers="this.customers"></AHBody>
+  <LoadingSpinner v-if="this.$store.state.isLoading"/>
+  <AHBody :customers="this.customers" v-else />
   <AHFooter></AHFooter>
 </template>
 
@@ -9,32 +10,41 @@ import axios from 'axios';
 import AHHeader from './components/UI/AHHeader.vue';
 import AHBody from './components/UI/AHBody.vue';
 import AHFooter from './components/UI/AHFooter.vue';
+import LoadingSpinner from './components/UI/LoadingSpinner.vue'
+
 export default {
   name: 'Customers-Frontend',
   components: {
     AHHeader,
     AHBody,
     AHFooter,
+    LoadingSpinner,
   },
   data() {
       return {
           getAllCustomersUrl: 'http://localhost:3000/customers',
           customers: [],
+          isLoading: false,
       };
   },
   mounted() {
      this.getAllCustomers();
   },
+  updated() {
+    setInterval(() => {
+      this.getAllCustomers()
+    }, 100000);
+  },
   methods: {
     async getAllCustomers() {
-        await this.$store.dispatch('isLoading', true);
+        this.isLoading = true;
         try {
             const response = await axios.get(this.getAllCustomersUrl);
             this.customers = response.data;
         } catch (error) {
             console.error(error);
         }
-        await this.$store.dispatch('isLoading', false);
+        this.isLoading = true;
     },
   }
 }
