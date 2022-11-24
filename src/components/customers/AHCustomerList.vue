@@ -27,7 +27,7 @@
                         <div :id="customer.id" v-if="!isEditDetail">
                             <p>Customer ID: <strong>{{customer.id}}</strong></p>
                             <p>Customer Name: <strong>{{customer.firstName + ' ' + customer.lastName}}</strong></p>
-                            <p>Customer Mobile No: <strong>{{customer.moBileNo}}</strong></p>
+                            <p>Customer Mobile No: <strong>{{customer.mobileNo}}</strong></p>
                             <p>Customer Age: <strong>{{customer.age}}</strong></p>
                             <p>Customer Email: <strong>{{customer.email}}</strong></p>
                             <button class="btn btn-outline-primary mb-2" @click="deleteCustomer(customer.id)"><i class="bi bi-trash"></i> Delete</button>
