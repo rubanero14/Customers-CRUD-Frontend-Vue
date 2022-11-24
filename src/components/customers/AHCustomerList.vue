@@ -36,7 +36,7 @@
                             <br/>
                             <button class="btn btn-outline-danger mb-2" @click="this.isViewDetails = false"><i class="bi bi-arrow-left"></i> Back</button>
                         </div>
-                        <UpdateCustomer :customer="customer" @toggle-edit="newValue => isEditDetail = newValue" :isEditDetail="isEditDetail" v-else/>
+                        <UpdateCustomer :isLoading="this.isLoading" :customer="customer" @toggle-edit="isEditDetail = newValue" :isEditDetail="isEditDetail" v-else/>
                     </center>
                 </CardComponent>
             </transition>
@@ -51,7 +51,8 @@ import axios from 'axios';
 import CardComponent from '../UI/CardComponent.vue';
 import UpdateCustomer from './UpdateCustomer.vue';
 export default {
-    props: ['customers'],
+    props: ['customers', 'toggle-loading', 'isLoading'],
+    emits: ['toggle-loading'],
     data() {
         return {
             isViewDetails: false,
@@ -63,11 +64,6 @@ export default {
         CardComponent,
         UpdateCustomer
     }, 
-    computed: {
-        isLoading(){
-            return this.$store.state.isLoading;
-        },
-    },
     methods: {
         viewDetails(cm) {
             this.customer = cm;
@@ -78,10 +74,7 @@ export default {
             this.isEditDetail = true;
         },
         async deleteCustomer(id) {
-            await this.$store.dispatch('isLoading', true);
-            console.log(this.deleteEndpoint, {
-                "id": id,
-            });
+            this.$emit('toggle-loading', true);
             await axios.post(this.deleteEndpoint, id)
             .then(function (response) {
                 console.log(response);
@@ -90,7 +83,7 @@ export default {
                 console.log(error);
             });
             this.isViewDetails = false;
-            await this.$store.dispatch('isLoading', false);
+            this.$emit('toggle-loading', false);
         }
     },
 }

@@ -52,6 +52,7 @@ export default {
 <style>
 @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css');
 @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css');
+
 /*Vue Animation*/ 
 .pop-enter-from, .pop-leave-to {
   opacity: 0;

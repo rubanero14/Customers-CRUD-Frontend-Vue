@@ -46,8 +46,8 @@
 <script>
 import axios from 'axios';
 export default {
-    props: ['customer', 'toggleEdit'],
-    emits: ['toggle-edit'],
+    props: ['customer', 'toggleEdit', 'isLoading'],
+    emits: ['toggle-edit', 'toggle-loading'],
     data(){
         return {
             updateEndPoint: 'http://localhost:3000/customers/edit/',
@@ -59,14 +59,9 @@ export default {
             email: this.customer.email,
         };
     },
-    computed: {
-        isLoading(){
-            return this.$store.state.isLoading;
-        },
-    },
     methods: {
         async updateCustomerDetail() {
-            await this.$store.dispatch('isLoading', true);
+            this.$emit('toggle-loading', true);
             await axios.post(this.updateEndPoint + this.id, {
                 "id": this.id,
                 "firstName": this.firstName,
@@ -82,7 +77,7 @@ export default {
                 console.log(error);
             });
             this.closeEdit();
-            await this.$store.dispatch('isLoading', false);
+            this.$emit('toggle-loading', false);
         },
         closeEdit(val) {
             return this.$emit('toggle-edit', val);

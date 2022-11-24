@@ -65,6 +65,8 @@ export default {
     components: {
         CardComponent,
     },
+    props: ['toggle-loading', 'isLoading'],
+    emits: ['toggle-loading'],
     data(){
         return {
             registrationEndPoint: 'http://localhost:3000/customers',
@@ -77,14 +79,9 @@ export default {
             formValidationAlert: false,
         };
     },
-    computed: {
-        isLoading(){
-            return this.$store.state.isLoading;
-        },
-    },
     methods: {
         async registerNewCustomer() {
-            await this.$store.dispatch('isLoading', true);
+            this.$emit('toggle-loading', true);
             if (this.firstName === '' || 
                 this.lastName === '' || 
                 this.age === '' || 
@@ -115,7 +112,7 @@ export default {
             this.age = null;
             this.mobileNo = null;
             this.email = null;
-            await this.$store.dispatch('isLoading', false);
+            this.$emit('toggle-loading', false);
         },
         toggleRegistrationForm() {
             return this.showRegistrationForm = !this.showRegistrationForm;
