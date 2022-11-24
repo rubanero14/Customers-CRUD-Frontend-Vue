@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
                     <transition mode="out-in" name="slide-fade" appear>
-                        <img class="brand" src="../../assets/your-logo.svg" alt="Your Company Logo">
+                        <img class="brand" src="your-logo.svg" alt="Your Company Logo">
                     </transition>
                 </div>
             </div>
