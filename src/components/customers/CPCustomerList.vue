@@ -22,11 +22,16 @@
                     </CardComponent>
                 </transition>
             </div>
-            <transition v-else>
+            <transition 
+                appear
+                name="fade"
+                mode="out-in"
+                v-else
+            >
                 <CardComponent>
                     <center>
                         <div :id="customer.id" v-if="!isEditDetail">
-                            <h5><strong>{{customer.firstName + ' ' + customer.lastName}}'s Details</strong></h5>
+                            <h5><strong>{{this.isDelete ? 'Delete' : ''}} {{customer.firstName + ' ' + customer.lastName}}'s Details</strong></h5>
                             <p>Customer ID: <strong>{{customer.id}}</strong></p>
                             <p>Customer Name: <strong>{{customer.firstName + ' ' + customer.lastName}}</strong></p>
                             <p>Customer Mobile No: <strong>{{customer.mobileNo}}</strong></p>
@@ -72,7 +77,7 @@ export default {
             isViewDetails: false,
             isEditDetail: false,
             isDelete: false,
-            deleteEndpoint: 'https://customers-crud-backend.onrender.com/deleteUser',
+            deleteEndpoint: 'http://localhost:3000/deleteUser',
         };
     },
     components: {
@@ -111,6 +116,7 @@ export default {
 .btn {
     width: 300px;
 }
+
 p {
     text-align: center;
 }
@@ -122,6 +128,7 @@ p {
         text-align: start;
     }
 }
+
 /* Declared variable --i is used to dynamically calculate transition time */
 .fade-enter-active {
     transition: all 0.5s ease-in-out;

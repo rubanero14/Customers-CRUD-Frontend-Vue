@@ -16,5 +16,6 @@
     background: transparent;
     padding: 30px;
     width: fit-content;
+    min-width: 345px;
 }
 </style>

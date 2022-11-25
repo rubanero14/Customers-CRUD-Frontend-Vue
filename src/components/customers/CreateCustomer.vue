@@ -6,54 +6,60 @@
             <button class="toggle-btn-registration btn btn-outline-primary mb-3" @click="toggleRegistrationForm"><i class="bi bi-plus-lg"></i> Add New Customer</button>
         </div>
         <div class="col-12 col-md-6 col-xl-4" v-else>
-            <CardComponent>
-                <h5><strong>New Customer Registration</strong></h5>
-                <form method="POST" @submit.prevent="registerNewCustomer">
-                    <div class="row">
-                        <div class="col-12">
-                            <label class="d-flex justify-content-start" for="firstName">Customer First Name</label>
-                            <input type="text" class="form-control mb-2" placeholder="Enter customer First Name.." name="firstName" id="firstName" v-model.trim="firstName"/>
+            <transition
+                appear
+                name="fade"
+                mode="out-in"
+            >
+                <CardComponent>
+                    <h5><strong>New Customer Registration</strong></h5>
+                    <form method="POST" @submit.prevent="registerNewCustomer">
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="d-flex justify-content-start" for="firstName">Customer First Name</label>
+                                <input type="text" class="form-control mb-2" placeholder="Enter customer First Name.." name="firstName" id="firstName" v-model.trim="firstName"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <label class="d-flex justify-content-start" for="lastName">Customer Last Name</label>
-                            <input type="text" class="form-control mb-2" placeholder="Enter customer Last Name.." name="lastName" id="lastName" v-model.trim="lastName"/>
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="d-flex justify-content-start" for="lastName">Customer Last Name</label>
+                                <input type="text" class="form-control mb-2" placeholder="Enter customer Last Name.." name="lastName" id="lastName" v-model.trim="lastName"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <label class="d-flex justify-content-start" for="age">Customer Age</label>
-                            <input type="number" class="form-control mb-2" placeholder="Enter customer Age.." name="age" id="age" v-model.trim="age"/>
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="d-flex justify-content-start" for="age">Customer Age</label>
+                                <input type="number" class="form-control mb-2" placeholder="Enter customer Age.." name="age" id="age" v-model.trim="age"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <label class="d-flex justify-content-start" for="mobileNo">Mobile Number</label>
-                            <input type="number" class="form-control mb-2" placeholder="Enter mobile no.." name="mobileNo" id="mobileNo" v-model.trim="mobileNo"/>
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="d-flex justify-content-start" for="mobileNo">Mobile Number</label>
+                                <input type="number" class="form-control mb-2" placeholder="Enter mobile no.." name="mobileNo" id="mobileNo" v-model.trim="mobileNo"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <label class="d-flex justify-content-start" for="email">Email Address</label>
-                            <input type="email" class="form-control mb-2" placeholder="Enter email address.." name="email" id="email" v-model.trim="email"/>
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="d-flex justify-content-start" for="email">Email Address</label>
+                                <input type="email" class="form-control mb-2" placeholder="Enter email address.." name="email" id="email" v-model.trim="email"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <button class="btn btn-outline-success w-100 mb-2" type="submit"><i class="bi bi-plus-lg"></i> Create New Customer</button>
+                        <div class="row">
+                            <div class="col-12">
+                                <button class="btn btn-outline-success w-100 mb-2" type="submit"><i class="bi bi-plus-lg"></i> Create New Customer</button>
+                            </div>
+                            <div class="col-12">
+                                <button :class="{'mb-2':formValidationAlert, '': !formValidationAlert}" class="btn btn-outline-danger w-100" type="submit" @click="toggleRegistrationForm"><i class="bi bi-arrow-left"></i> Back</button>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <button :class="{'mb-2':formValidationAlert, '': !formValidationAlert}" class="btn btn-outline-danger w-100" type="submit" @click="toggleRegistrationForm"><i class="bi bi-arrow-left"></i> Back</button>
+                        <div class="row" v-if="formValidationAlert">
+                            <div class="col-12">
+                                <p class="mb-0 text-danger">Please fill up the required fields!</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row" v-if="formValidationAlert">
-                        <div class="col-12">
-                            <p class="mb-0 text-danger">Please fill up the required fields!</p>
-                        </div>
-                    </div>
-                </form>
-            </CardComponent>
+                    </form>
+                </CardComponent>
+            </transition>
             <hr/>
         </div>
     </center>
@@ -126,6 +132,29 @@ label::after {
     margin-left: 3px;
     color: red;
 }
+
+/* Declared variable --i is used to dynamically calculate transition time */
+.fade-enter-active {
+    transition: all 0.5s ease-in-out;
+    transition-delay: calc(var(--i) * 0.05s);
+}
+  .fade-leave-active {
+    transition: all 0.5s ease-in-out;
+    transition-delay: calc(var(--i) * 0.05s);
+  }
+  .fade-enter-from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  .fade-leave-to {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+  .fade-enter-to,
+  .fade-leave-from {
+    opacity: 1;
+  }
+  
 .toggle-btn-registration {
     width: auto;
 }

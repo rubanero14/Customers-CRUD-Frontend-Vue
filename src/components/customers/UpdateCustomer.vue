@@ -91,4 +91,19 @@ label::after {
     margin-left: 3px;
     color: red;
 }
+
+p {
+    display: inline-block;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .btn {
+        width: 100%;
+    }
+    p {
+        text-align: start;
+    }
+}
 </style>
