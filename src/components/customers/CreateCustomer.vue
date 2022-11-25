@@ -12,35 +12,35 @@
                 mode="out-in"
             >
                 <CardComponent>
-                    <h5><strong>New Customer Registration</strong></h5>
+                    <h5 class="text-secondary"><strong>New Customer Registration</strong></h5>
                     <form method="POST" @submit.prevent="registerNewCustomer">
                         <div class="row">
                             <div class="col-12">
-                                <label class="d-flex justify-content-start" for="firstName">Customer First Name</label>
+                                <label class="d-flex justify-content-start text-secondary" for="firstName">Customer First Name</label>
                                 <input type="text" class="form-control mb-2" placeholder="Enter customer First Name.." name="firstName" id="firstName" v-model.trim="firstName"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <label class="d-flex justify-content-start" for="lastName">Customer Last Name</label>
+                                <label class="d-flex justify-content-start text-secondary" for="lastName">Customer Last Name</label>
                                 <input type="text" class="form-control mb-2" placeholder="Enter customer Last Name.." name="lastName" id="lastName" v-model.trim="lastName"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <label class="d-flex justify-content-start" for="age">Customer Age</label>
+                                <label class="d-flex justify-content-start text-secondary" for="age">Customer Age</label>
                                 <input type="number" class="form-control mb-2" placeholder="Enter customer Age.." name="age" id="age" v-model.trim="age"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <label class="d-flex justify-content-start" for="mobileNo">Mobile Number</label>
+                                <label class="d-flex justify-content-start text-secondary" for="mobileNo">Mobile Number</label>
                                 <input type="number" class="form-control mb-2" placeholder="Enter mobile no.." name="mobileNo" id="mobileNo" v-model.trim="mobileNo"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <label class="d-flex justify-content-start" for="email">Email Address</label>
+                                <label class="d-flex justify-content-start text-secondary" for="email">Email Address</label>
                                 <input type="email" class="form-control mb-2" placeholder="Enter email address.." name="email" id="email" v-model.trim="email"/>
                             </div>
                         </div>

@@ -12,8 +12,8 @@
                     <CardComponent class="mb-3 me-0 me-lg-3" :key="customer.id" :id="customer.id">
                         <center :style="{ '--i': index }">
                             <div>
-                                <p>Customer ID: <strong>{{customer.id}}</strong></p>
-                                <p>Customer Name: <strong>{{customer.firstName + ' ' + customer.lastName}}</strong></p>
+                                <p class="text-secondary">Customer ID: <strong>{{customer.id}}</strong></p>
+                                <p class="text-secondary">Customer Name: <strong>{{customer.firstName + ' ' + customer.lastName}}</strong></p>
                                 <button class="d-block btn btn-outline-success" @click="viewDetails(customer)">
                                     <i class="bi bi-info-circle"></i> View Details
                                 </button>
@@ -31,12 +31,12 @@
                 <CardComponent>
                     <center>
                         <div :id="customer.id" v-if="!isEditDetail">
-                            <h5><strong>{{this.isDelete ? 'Delete' : ''}} {{customer.firstName + ' ' + customer.lastName}}'s Details</strong></h5>
-                            <p>Customer ID: <strong>{{customer.id}}</strong></p>
-                            <p>Customer Name: <strong>{{customer.firstName + ' ' + customer.lastName}}</strong></p>
-                            <p>Customer Mobile No: <strong>{{customer.mobileNo}}</strong></p>
-                            <p>Customer Age: <strong>{{customer.age}}</strong></p>
-                            <p>Customer Email: <strong>{{customer.email}}</strong></p>
+                            <h5 class="text-secondary"><strong>{{this.isDelete ? 'Delete' : ''}} {{customer.firstName + ' ' + customer.lastName}}'s Details</strong></h5>
+                            <p class="text-secondary">Customer ID: <strong>{{customer.id}}</strong></p>
+                            <p class="text-secondary">Customer Name: <strong>{{customer.firstName + ' ' + customer.lastName}}</strong></p>
+                            <p class="text-secondary">Customer Mobile No: <strong>{{customer.mobileNo}}</strong></p>
+                            <p class="text-secondary">Customer Age: <strong>{{customer.age}}</strong></p>
+                            <p class="text-secondary">Customer Email: <strong>{{customer.email}}</strong></p>
                             <div v-show="!this.isDelete">
                                 <button class="btn btn-outline-danger mb-2" @click="this.isDelete = true"><i class="bi bi-trash"></i> Delete</button>
                                 <br/>
@@ -53,8 +53,8 @@
                                 <button class="btn btn-outline-danger mb-2" @click="deleteCustomer(customer.id)"><i class="bi bi-trash"></i> Delete</button>
                                 <br/>
                                 <button class="btn btn-outline-success mb-2" @click="this.isDelete = false"><i class="bi bi-arrow-left"></i> Back</button>
-                                <p class="text-success mb-0" v-if="this.isDeleteSuccess">Deleted Successfully!</p>
-                                <p class="text-danger mb-0" v-if="!this.isDeleteSuccess && this.isDeleteSuccess !== undefined">Delete was unsuccessful!</p>
+                                <p class="text-success text-center mb-0" v-if="this.isDeleteSuccess">Deleted Successfully!</p>
+                                <p class="text-danger text-center mb-0" v-if="!this.isDeleteSuccess && this.isDeleteSuccess !== undefined">Delete was unsuccessful!</p>
                             </div>
                         </div>
                         <UpdateCustomer :isLoading="this.isLoading" :customer="customer" @toggle-edit="isEditDetail = newValue" :isEditDetail="isEditDetail" v-else/>
