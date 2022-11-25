@@ -1,27 +1,28 @@
 <template>
-  <AHHeader></AHHeader>
+  <CPHeader />
   <LoadingSpinner v-if="this.$store.state.isLoading"/>
-  <AHBody :customers="this.customers" v-else />
-  <AHFooter></AHFooter>
+  <CPBody :customers="this.customers" v-else/>
+  <CPFooter />
 </template>
 
 <script>
 import axios from 'axios';
-import AHHeader from './components/UI/AHHeader.vue';
-import AHBody from './components/UI/AHBody.vue';
-import AHFooter from './components/UI/AHFooter.vue';
-import LoadingSpinner from './components/UI/LoadingSpinner.vue'
+import CPHeader from './components/UI/CPHeader.vue';
+import CPBody from './components/UI/CPBody.vue';
+import CPFooter from './components/UI/CPFooter.vue';
+import LoadingSpinner from './components/UI/LoadingSpinner.vue';
+
 export default {
-  name: 'Customers-Frontend',
+  name: 'Customers-Data-Management-Application',
   components: {
-    AHHeader,
-    AHBody,
-    AHFooter,
+    CPHeader,
+    CPBody,
+    CPFooter,
     LoadingSpinner,
   },
   data() {
       return {
-          getAllCustomersUrl: 'http://localhost:3000/customers',
+          getAllCustomersUrl: 'https://customers-crud-backend.onrender.com/customers',
           customers: [],
           isLoading: false,
       };

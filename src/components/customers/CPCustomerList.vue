@@ -9,13 +9,14 @@
                     name="fade"
                     mode="out-in"
                 >   
-                    <CardComponent :key="customer.id" :id="customer.id">
+                    <CardComponent class="mb-3 me-0 me-lg-3" :key="customer.id" :id="customer.id">
                         <center :style="{ '--i': index }">
                             <div>
                                 <p>Customer ID: <strong>{{customer.id}}</strong></p>
                                 <p>Customer Name: <strong>{{customer.firstName + ' ' + customer.lastName}}</strong></p>
-                                <p>Customer Age: <strong>{{customer.age}}</strong></p>
-                                <button class="d-block btn btn-outline-success" @click="viewDetails(customer)"><i class="bi bi-info-circle"></i> View Details</button>
+                                <button class="d-block btn btn-outline-success" @click="viewDetails(customer)">
+                                    <i class="bi bi-info-circle"></i> View Details
+                                </button>
                             </div>
                         </center>
                     </CardComponent>
@@ -25,16 +26,29 @@
                 <CardComponent>
                     <center>
                         <div :id="customer.id" v-if="!isEditDetail">
+                            <h5><strong>{{customer.firstName + ' ' + customer.lastName}}'s Details</strong></h5>
                             <p>Customer ID: <strong>{{customer.id}}</strong></p>
                             <p>Customer Name: <strong>{{customer.firstName + ' ' + customer.lastName}}</strong></p>
                             <p>Customer Mobile No: <strong>{{customer.mobileNo}}</strong></p>
                             <p>Customer Age: <strong>{{customer.age}}</strong></p>
                             <p>Customer Email: <strong>{{customer.email}}</strong></p>
-                            <button class="btn btn-outline-primary mb-2" @click="deleteCustomer(customer.id)"><i class="bi bi-trash"></i> Delete</button>
-                            <br/>
-                            <button class="btn btn-outline-success mb-2" @click="editDetails(customer)"><i class="bi bi-pencil-square"></i> Edit</button>
-                            <br/>
-                            <button class="btn btn-outline-danger mb-2" @click="this.isViewDetails = false"><i class="bi bi-arrow-left"></i> Back</button>
+                            <div v-show="!this.isDelete">
+                                <button class="btn btn-outline-danger mb-2" @click="this.isDelete = true"><i class="bi bi-trash"></i> Delete</button>
+                                <br/>
+                                <button class="btn btn-outline-primary mb-2" @click="editDetails(customer)"><i class="bi bi-pencil-square"></i> Edit</button>
+                                <br/>
+                                <button class="btn btn-outline-success mb-2" @click="this.isViewDetails = false"><i class="bi bi-arrow-left"></i> Back</button>
+                            </div>
+                            <p v-show="this.isDelete" class="text-danger">
+                                <strong>
+                                    Are you sure to delete {{customer.firstName + ' ' + customer.lastName}}'s details?
+                                </strong>
+                            </p>
+                            <div v-show="this.isDelete">
+                                <button class="btn btn-outline-danger mb-2" @click="deleteCustomer(customer.id)"><i class="bi bi-trash"></i> Delete</button>
+                                <br/>
+                                <button class="btn btn-outline-success mb-2" @click="this.isDelete = false"><i class="bi bi-arrow-left"></i> Back</button>
+                            </div>
                         </div>
                         <UpdateCustomer :isLoading="this.isLoading" :customer="customer" @toggle-edit="isEditDetail = newValue" :isEditDetail="isEditDetail" v-else/>
                     </center>
@@ -57,7 +71,8 @@ export default {
         return {
             isViewDetails: false,
             isEditDetail: false,
-            deleteEndpoint: 'http://localhost:3000/deleteUser',
+            isDelete: false,
+            deleteEndpoint: 'https://customers-crud-backend.onrender.com/deleteUser',
         };
     },
     components: {

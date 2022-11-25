@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <p>{{updateDate()}} &copy; Aham Capital Asset Management</p>
+                    <p>{{updateDate()}} &copy; Capital Platforms</p>
                 </div>
             </div>
         </div>

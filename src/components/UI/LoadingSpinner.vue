@@ -16,7 +16,7 @@
 <script>
 </script>
 <style scoped>
-.centered {
+.overlay {
     z-index: 10000;
     background: rgba(255, 255, 255, 0.8);
     position: fixed;
