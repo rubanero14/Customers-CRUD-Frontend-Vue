@@ -37,10 +37,12 @@
                     <button class="btn btn-outline-success w-100 mb-2" type="submit"><i class="bi bi-pencil-square"></i> Update Details</button>
                 </div>
                 <div class="col-12">
-                    <button class="btn btn-outline-danger w-100" @click="closeEdit(false)"><i class="bi bi-arrow-left"></i> Back</button>
+                    <button class="btn btn-outline-danger mb-2 w-100" @click="closeEdit(false)"><i class="bi bi-arrow-left"></i> Back</button>
                 </div>
             </div>
         </form>
+        <p class="text-success mb-0" v-if="this.isUpdateSuccess">Updated Successfully!</p>
+        <p class="text-danger mb-0" v-if="!this.isUpdateSuccess && this.isUpdateSuccess !== undefined">Update was unsuccessful!</p>
     </div>
 </template>
 <script>
@@ -57,6 +59,7 @@ export default {
             age: this.customer.age,
             mobileNo: this.customer.mobileNo,
             email: this.customer.email,
+            isUpdateSuccess: undefined,
         };
     },
     methods: {
@@ -70,13 +73,15 @@ export default {
                 "mobileNo": this.mobileNo,
                 "email": this.email,
             })
-            .then(function (response) {
-                console.log(response);
+            .then(() => {
+                this.isUpdateSuccess = true;
             })
-            .catch(function (error) {
-                console.log(error);
+            .catch(() => {
+                this.isUpdateSuccess = false;
             });
-            this.closeEdit();
+
+            setTimeout(() => this.closeEdit() ,5000)
+            
             this.$emit('toggle-loading', false);
         },
         closeEdit(val) {

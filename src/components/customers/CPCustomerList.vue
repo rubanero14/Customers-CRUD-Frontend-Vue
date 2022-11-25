@@ -53,6 +53,8 @@
                                 <button class="btn btn-outline-danger mb-2" @click="deleteCustomer(customer.id)"><i class="bi bi-trash"></i> Delete</button>
                                 <br/>
                                 <button class="btn btn-outline-success mb-2" @click="this.isDelete = false"><i class="bi bi-arrow-left"></i> Back</button>
+                                <p class="text-success mb-0" v-if="this.isDeleteSuccess">Deleted Successfully!</p>
+                                <p class="text-danger mb-0" v-if="!this.isDeleteSuccess && this.isDeleteSuccess !== undefined">Delete was unsuccessful!</p>
                             </div>
                         </div>
                         <UpdateCustomer :isLoading="this.isLoading" :customer="customer" @toggle-edit="isEditDetail = newValue" :isEditDetail="isEditDetail" v-else/>
@@ -77,6 +79,7 @@ export default {
             isViewDetails: false,
             isEditDetail: false,
             isDelete: false,
+            isDeleteSuccess: undefined,
             deleteEndpoint: 'http://localhost:3000/deleteUser',
         };
     },
@@ -95,14 +98,17 @@ export default {
         },
         async deleteCustomer(id) {
             this.$emit('toggle-loading', true);
+
             await axios.post(this.deleteEndpoint, id)
-            .then(function (response) {
-                console.log(response);
+            .then(() => {
+                this.isDeleteSuccess = true;
             })
-            .catch(function (error) {
-                console.log(error);
+            .catch(() => {
+                this.isDeleteSuccess = false;
             });
-            this.isViewDetails = false;
+
+            setTimeout(() => this.isViewDetails = false, 5000)
+
             this.$emit('toggle-loading', false);
         }
     },
