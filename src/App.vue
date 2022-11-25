@@ -28,12 +28,13 @@ export default {
       };
   },
   mounted() {
-     this.getAllCustomers();
-  },
-  updated() {
+    // Get all list if customers data
+    this.getAllCustomers();
+
+    // Pooling logic to update all customers data from server every 10 seconds
     setInterval(() => {
-      this.getAllCustomers()
-    }, 100000);
+      this.getAllCustomers();
+    }, 10000);
   },
   methods: {
     async getAllCustomers() {
@@ -41,6 +42,7 @@ export default {
         try {
             const response = await axios.get(this.getAllCustomersUrl);
             this.customers = response.data;
+            console.log(response.data)
         } catch (error) {
             console.error(error);
         }
@@ -52,5 +54,10 @@ export default {
 
 <style>
 @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css');
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css');
+
+svg.icon {
+  width: 16px;
+  fill: currentColor;
+  margin-bottom: 0.25rem;
+}
 </style>
