@@ -16,6 +16,6 @@
     background: transparent;
     padding: 30px;
     width: fit-content;
-    width: 350px;
+    width: 360px;
 }
 </style>

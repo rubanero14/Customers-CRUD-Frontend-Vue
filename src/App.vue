@@ -61,9 +61,19 @@ export default {
 <style>
 @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css');
 
+h5 {
+  margin-right: 5px;
+}
+
 svg.icon {
   width: 16px;
   fill: currentColor;
   margin-bottom: 0.25rem;
+}
+
+svg.icon.lg {
+  width: 20px;
+  fill: currentColor;
+  margin-bottom: 0.5rem;
 }
 </style>
