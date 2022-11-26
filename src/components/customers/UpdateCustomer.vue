@@ -79,8 +79,8 @@ export default {
             this.$emit('toggle-loading', true);
             if (this.firstName === '' || 
                 this.lastName === '' || 
-                this.age === '' || 
-                this.mobileNo === '' || 
+                this.age === null || 
+                this.mobileNo === null || 
                 this.email === ''
             ) {
                 return this.formValidationAlert = true;

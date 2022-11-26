@@ -103,13 +103,18 @@ export default {
             isRegistrationSuccess: undefined,
         };
     },
+    mounted() {
+        setInterval(() => {
+            this.setAppTitle();    
+        }, 500);
+    },
     methods: {
         async registerNewCustomer() {
             this.$emit('toggle-loading', true);
             if (this.firstName === '' || 
                 this.lastName === '' || 
-                this.age === '' || 
-                this.mobileNo === '' || 
+                this.age === null || 
+                this.mobileNo === null || 
                 this.email === ''
             ) {
                 return this.formValidationAlert = true;
@@ -147,6 +152,14 @@ export default {
         },
         toggleRegistrationForm() {
             return this.showRegistrationForm = !this.showRegistrationForm;
+        },
+        setAppTitle() {
+            // Set App Title
+            if(this.showRegistrationForm) {
+                document.title = `Register New Customer Info - CIM`;
+            } else {
+                document.title = 'Home - CIM';
+            }
         },
     },
 }

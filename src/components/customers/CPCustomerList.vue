@@ -104,6 +104,11 @@ export default {
         CardComponent,
         UpdateCustomer
     }, 
+    mounted() {
+        setInterval(() => {
+            this.setAppTitle();    
+        }, 500);
+    },
     methods: {
         viewDetails(cm) {
             this.customer = cm;
@@ -132,7 +137,21 @@ export default {
             }, 1000)
 
             this.$emit('toggle-loading', false);
-        }
+        },
+        setAppTitle() {
+            // Set App Title
+            if(this.isViewDetails && this.isDelete){
+                document.title = `Delete ${this.customer.firstName} ${this.customer.lastName}'s Info - CIM`;
+            } 
+            
+            if (this.isViewDetails && !this.isDelete) {
+                document.title = `${this.customer.firstName} ${this.customer.lastName}'s Info - CIM`;
+            } 
+
+            if (this.isEditDetail) {
+                document.title = `Update ${this.customer.firstName} ${this.customer.lastName}'s Info - CIM`;
+            }
+        },
     },
 }
 </script>

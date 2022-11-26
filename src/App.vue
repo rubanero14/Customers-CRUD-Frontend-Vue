@@ -30,10 +30,10 @@ export default {
   mounted() {
     this.setAppTitle();
 
-    // Get all list if customers data
+    // Get all list of customers data
     this.getAllCustomers();
 
-    // Pooling logic to update all customers data from server every 10 seconds
+    // Polling logic to update all customers data from server every 5 seconds
     setInterval(() => {
       this.getAllCustomers();
     }, 5000);
@@ -52,7 +52,7 @@ export default {
     },
     setAppTitle() {
       // Set App Title
-      document.title = 'Customers Data Management App';
+      document.title = 'Home - CIM';
     },
   }
 }
