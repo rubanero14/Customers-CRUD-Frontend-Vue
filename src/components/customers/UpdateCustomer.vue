@@ -69,7 +69,7 @@
             >Mobile Number</label
           >
           <input
-            type="number"
+            type="tel"
             class="form-control mb-2"
             placeholder="Enter mobile no.."
             name="mobileNo"

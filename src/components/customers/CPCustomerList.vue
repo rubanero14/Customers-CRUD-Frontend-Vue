@@ -29,7 +29,7 @@
               <hr class="my-2" />
               <div>
                 <p class="text-secondary mb-1">
-                  Customer ID: <strong>{{ customer.id }}</strong>
+                  Customer ID: <strong>{{ customer.id.toUpperCase() }}</strong>
                 </p>
                 <p class="text-secondary mb-2">
                   Customer Name:
@@ -93,7 +93,7 @@
               </div>
               <hr class="my-2" />
               <p class="text-secondary mb-1">
-                Customer ID: <strong>{{ customer.id }}</strong>
+                Customer ID: <strong>{{ customer.id.toUpperCase() }}</strong>
               </p>
               <p class="text-secondary mb-1">
                 Customer Name:
