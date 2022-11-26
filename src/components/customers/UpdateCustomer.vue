@@ -58,7 +58,7 @@ export default {
     emits: ['toggle-edit', 'toggle-loading'],
     data(){
         return {
-            updateEndPoint: 'http://localhost:3000/customers/edit/',
+            updateEndPoint: 'https://customers-crud-backend.onrender.com/customers/edit/',
             id: this.customer.id,
             firstName: this.customer.firstName,
             lastName: this.customer.lastName,

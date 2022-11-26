@@ -4,7 +4,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <p>{{updateDate()}} &copy; Capital Platforms</p>
+                    <p class="text-secondary">
+                        {{updateDate()}} &copy; Capital Platforms
+                    </p>
                 </div>
             </div>
         </div>

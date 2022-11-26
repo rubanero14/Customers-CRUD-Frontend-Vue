@@ -13,7 +13,7 @@ import CPFooter from './components/UI/CPFooter.vue';
 import LoadingSpinner from './components/UI/LoadingSpinner.vue';
 
 export default {
-  name: 'Customers-Data-Management-Application',
+  name: 'CDM-Tool',
   components: {
     CPHeader,
     CPBody,
@@ -22,12 +22,14 @@ export default {
   },
   data() {
       return {
-          getAllCustomersUrl: 'http://localhost:3000/customers',
+          getAllCustomersUrl: 'https://customers-crud-backend.onrender.com/customers',
           customers: [],
           isLoading: false,
       };
   },
   mounted() {
+    this.setAppTitle();
+
     // Get all list if customers data
     this.getAllCustomers();
 
@@ -47,6 +49,10 @@ export default {
             console.error(error);
         }
         this.isLoading = true;
+    },
+    setAppTitle() {
+      // Set App Title
+      document.title = 'Customers Data Management App';
     },
   }
 }
