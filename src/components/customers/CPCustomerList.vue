@@ -10,8 +10,8 @@
                     name="fade"
                     mode="out-in"
                 >   
-                    <CardComponent class="mb-3 me-0 me-lg-3" :key="customer.id" :id="customer.id">
-                        <center :style="{ '--i': index }">
+                    <CardComponent class="mb-3 me-0 me-lg-3" :style="{ '--i': index }">
+                        <center :key="customer.id" :id="customer.id">
                             <div>
                                 <p class="text-secondary">Customer ID: <strong>{{customer.id}}</strong></p>
                                 <p class="text-secondary">Customer Name: <strong>{{customer.firstName + ' ' + customer.lastName}}</strong></p>
