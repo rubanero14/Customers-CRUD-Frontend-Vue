@@ -22,7 +22,7 @@ export default {
   },
   data() {
       return {
-          getAllCustomersUrl: 'https://customers-crud-backend.onrender.com/customers',
+          getAllCustomersUrl: 'http://localhost:3000/customers',
           customers: [],
           isLoading: false,
       };

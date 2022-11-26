@@ -90,7 +90,7 @@ export default {
     emits: ['toggle-loading'],
     data(){
         return {
-            registrationEndPoint: 'https://customers-crud-backend.onrender.com/customers',
+            registrationEndPoint: 'http://localhost:3000/customers',
             firstName: '',
             lastName: '',
             age: '',
