@@ -61,7 +61,7 @@
                                 </button>
                             </div>
                             <div class="col-12">
-                                <button :class="{'mb-2':formValidationAlert, '': !formValidationAlert}" class="btn btn-outline-danger w-100" type="submit" @click="toggleRegistrationForm">
+                                <button :class="{'mb-2':formValidationAlert, '': !formValidationAlert}" class="btn btn-outline-danger mb-2 w-100" type="submit" @click="toggleRegistrationForm">
                                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
                                     Back
                                 </button>
@@ -73,6 +73,8 @@
                             </div>
                         </div>
                     </form>
+                    <p class="text-success text-center mb-0" v-if="this.isRegistrationSuccess">Registration was successful!</p>
+                    <p class="text-danger text-center mb-0" v-if="!this.isRegistrationSuccess && this.isRegistrationSuccess !== undefined">Registration was unsuccessful!</p>
                 </CardComponent>
             </transition>
             <hr/>
@@ -98,6 +100,7 @@ export default {
             email: '',
             showRegistrationForm: false,
             formValidationAlert: false,
+            isRegistrationSuccess: undefined,
         };
     },
     methods: {
@@ -121,12 +124,19 @@ export default {
                 "mobileNo": this.mobileNo,
                 "email": this.email,
             })
-            .then(function (response) {
-                console.log(response);
+            .then(() => {
+                this.isRegistrationSuccess = true;
             })
-            .catch(function (error) {
-                console.log(error);
+            .catch(() => {
+                this.isRegistrationSuccess = false;
             });
+
+            // Garbage Collection for alerts
+            setTimeout(() => {
+                this.isRegistrationSuccess = undefined;
+                this.toggleRegistrationForm();
+            }, 3000);
+
             // Reset input
             this.firstName = null;
             this.lastName = null;
@@ -137,7 +147,7 @@ export default {
         },
         toggleRegistrationForm() {
             return this.showRegistrationForm = !this.showRegistrationForm;
-        }
+        },
     },
 }
 </script>

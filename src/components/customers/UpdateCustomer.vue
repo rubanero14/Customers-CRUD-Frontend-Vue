@@ -46,8 +46,13 @@
                     </button>
                 </div>
             </div>
+            <div class="row" v-if="formValidationAlert">
+                <div class="col-12">
+                    <p class="mb-0 text-danger">Please fill up the required fields!</p>
+                </div>
+            </div>
         </form>
-        <p class="text-success text-center mb-0" v-if="this.isUpdateSuccess">Updated Successfully!</p>
+        <p class="text-success text-center mb-0" v-if="this.isUpdateSuccess">Update was successful!</p>
         <p class="text-danger text-center mb-0" v-if="!this.isUpdateSuccess && this.isUpdateSuccess !== undefined">Update was unsuccessful!</p>
     </div>
 </template>
@@ -66,11 +71,23 @@ export default {
             mobileNo: this.customer.mobileNo,
             email: this.customer.email,
             isUpdateSuccess: undefined,
+            formValidationAlert: false,
         };
     },
     methods: {
         async updateCustomerDetail() {
             this.$emit('toggle-loading', true);
+            if (this.firstName === '' || 
+                this.lastName === '' || 
+                this.age === '' || 
+                this.mobileNo === '' || 
+                this.email === ''
+            ) {
+                return this.formValidationAlert = true;
+            } else {
+                this.formValidationAlert = false;
+            }
+
             await axios.post(this.updateEndPoint + this.id, {
                 "id": this.id,
                 "firstName": this.firstName,
@@ -86,7 +103,11 @@ export default {
                 this.isUpdateSuccess = false;
             });
 
-            setTimeout(() => this.closeEdit() ,5000)
+            // Garbage Collection for alerts
+            setTimeout(() => {
+                this.isUpdateSuccess = undefined;
+                this.closeEdit();
+            }, 3000);
             
             this.$emit('toggle-loading', false);
         },

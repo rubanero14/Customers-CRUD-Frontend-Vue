@@ -123,8 +123,13 @@ export default {
             .catch(() => {
                 this.isDeleteSuccess = false;
             });
-
-            setTimeout(() => this.isViewDetails = false, 5000)
+            
+            // Garbage Collection for alerts
+            setTimeout(() => {
+                this.isDelete = false;
+                this.isDeleteSuccess = undefined;
+                this.isViewDetails = false;
+            }, 1000)
 
             this.$emit('toggle-loading', false);
         }

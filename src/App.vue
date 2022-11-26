@@ -36,7 +36,7 @@ export default {
     // Pooling logic to update all customers data from server every 10 seconds
     setInterval(() => {
       this.getAllCustomers();
-    }, 10000);
+    }, 5000);
   },
   methods: {
     async getAllCustomers() {
