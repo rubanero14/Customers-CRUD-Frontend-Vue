@@ -10,7 +10,7 @@
     cursor: pointer;
     box-shadow: 0px 4px 16px 0px rgb(0 0 0 / 20%);
     border-radius: 16px;
-    overflow: hidden;
+    overflow: visible;
     transition: all 0.2s ease-out;
     background-clip: padding-box;
     background: transparent;
