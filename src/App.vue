@@ -65,16 +65,4 @@ export default {
 h5 {
   margin-right: 5px;
 }
-
-svg.icon {
-  width: 16px;
-  fill: currentColor;
-  margin-bottom: 0.25rem;
-}
-
-svg.icon.lg {
-  width: 20px;
-  fill: currentColor;
-  margin-bottom: 0.5rem;
-}
 </style>
