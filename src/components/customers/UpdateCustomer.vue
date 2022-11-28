@@ -152,7 +152,7 @@
 import axios from "axios";
 import ToolTip from "../UI/ToolTip.vue";
 import SVG from "../UI/SVG.vue";
-import LoadingSpinner from '../UI/LoadingSpinner.vue';
+import LoadingSpinner from "../UI/LoadingSpinner.vue";
 
 export default {
   props: ["customer", "toggleEdit"],
@@ -178,7 +178,7 @@ export default {
   },
   methods: {
     async updateCustomerDetail() {
-      this.$store.dispatch('isLoading', true);
+      this.$store.dispatch("isLoading", true);
       if (
         this.firstName === "" ||
         this.lastName === "" ||
@@ -186,7 +186,7 @@ export default {
         this.mobileNo === "" ||
         this.email === ""
       ) {
-        this.$store.dispatch('isLoading', false);
+        this.$store.dispatch("isLoading", false);
         return (this.formValidationAlert = true);
       } else {
         this.formValidationAlert = false;
@@ -210,7 +210,7 @@ export default {
 
       // Garbage Collection for alerts
       setTimeout(() => {
-        this.$store.dispatch('isLoading', false);
+        this.$store.dispatch("isLoading", false);
         this.isUpdateSuccess = undefined;
         this.closeEdit(false);
       }, 3000);

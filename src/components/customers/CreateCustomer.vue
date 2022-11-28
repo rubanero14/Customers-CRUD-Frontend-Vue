@@ -208,7 +208,7 @@ import axios from "axios";
 import CardComponent from "../UI/CardComponent.vue";
 import ToolTip from "../UI/ToolTip.vue";
 import SVG from "../UI/SVG.vue";
-import LoadingSpinner from '../UI/LoadingSpinner.vue';
+import LoadingSpinner from "../UI/LoadingSpinner.vue";
 
 export default {
   components: {
@@ -238,7 +238,7 @@ export default {
   },
   methods: {
     async registerNewCustomer() {
-      this.$store.dispatch('isLoading', true);
+      this.$store.dispatch("isLoading", true);
       if (
         this.firstName === "" ||
         this.lastName === "" ||
@@ -246,7 +246,7 @@ export default {
         this.mobileNo === "" ||
         this.email === ""
       ) {
-        this.$store.dispatch('isLoading', false);
+        this.$store.dispatch("isLoading", false);
         return (this.formValidationAlert = true);
       } else {
         this.formValidationAlert = false;
@@ -268,19 +268,18 @@ export default {
           this.isRegistrationSuccess = false;
         });
 
-        
-        // Garbage Collection for alerts
-        setTimeout(() => {
-          this.$store.dispatch('isLoading', false);
-          // Reset input
-          this.firstName = "";
-          this.lastName = "";
-          this.age = "";
-          this.mobileNo = "";
-          this.email = "";
-          this.isRegistrationSuccess = undefined;
-          this.toggleRegistrationForm();
-        }, 3000);
+      // Garbage Collection for alerts
+      setTimeout(() => {
+        this.$store.dispatch("isLoading", false);
+        // Reset input
+        this.firstName = "";
+        this.lastName = "";
+        this.age = "";
+        this.mobileNo = "";
+        this.email = "";
+        this.isRegistrationSuccess = undefined;
+        this.toggleRegistrationForm();
+      }, 3000);
     },
     toggleRegistrationForm() {
       return (this.showRegistrationForm = !this.showRegistrationForm);

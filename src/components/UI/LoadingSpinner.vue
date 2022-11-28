@@ -1,6 +1,6 @@
 <template>
     <div class="centered overlay">
-        <div class="d-flex spinner">
+        <div class="d-flex justify-content-center align-items-center spinner">
             <div class="mx-1 spinner-grow one" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
@@ -25,11 +25,13 @@
     width: 100%;
     height: 100%;
 }
+
 .spinner {
-    position: relative;
-    top: 50%;
-    left: 45%;
+    z-index: 10001;
+    width: 100%;
+    height: 100%;
 }
+
  /* Spinner Section */
 .spinner-grow{
     width: 1rem !important;

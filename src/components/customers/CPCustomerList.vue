@@ -213,7 +213,10 @@
     </center>
   </div>
   <div class="col-12" v-else>
-    <p class="text-center text-secondary no-clients-alert mb-0" v-if="this.isFetchingData">
+    <p
+      class="text-center text-secondary no-clients-alert mb-0"
+      v-if="this.isFetchingData"
+    >
       Please wait, data being fetched from server...
     </p>
     <p class="text-center text-secondary no-clients-alert mb-0" v-else>
@@ -227,7 +230,7 @@ import CardComponent from "../UI/CardComponent.vue";
 import UpdateCustomer from "./UpdateCustomer.vue";
 import ToolTip from "../UI/ToolTip.vue";
 import SVG from "../UI/SVG.vue";
-import LoadingSpinner from '../UI/LoadingSpinner.vue';
+import LoadingSpinner from "../UI/LoadingSpinner.vue";
 
 export default {
   props: ["customers", "isFetchingData"],
@@ -262,7 +265,7 @@ export default {
       this.isEditDetail = true;
     },
     async deleteCustomer(id) {
-      this.$store.dispatch('isLoading', true);
+      this.$store.dispatch("isLoading", true);
 
       await axios
         .post(this.deleteEndpoint, id)
@@ -275,7 +278,7 @@ export default {
 
       // Garbage Collection for alerts
       setTimeout(() => {
-        this.$store.dispatch('isLoading', false);
+        this.$store.dispatch("isLoading", false);
         this.isDelete = false;
         this.isDeleteSuccess = undefined;
         this.isViewDetails = false;
