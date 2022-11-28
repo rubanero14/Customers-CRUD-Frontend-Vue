@@ -1,13 +1,13 @@
 <template>
     <div class="centered overlay">
         <div class="d-flex spinner">
-            <div :style="{ '--j':1 }" class="mx-1 spinner-grow one" role="status">
+            <div class="mx-1 spinner-grow one" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
-            <div :style="{ '--j':2 }" class="mx-1 spinner-grow two" role="status">
+            <div class="mx-1 spinner-grow two" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
-            <div :style="{ '--j':3 }" class="mx-1 spinner-grow three" role="status">
+            <div class="mx-1 spinner-grow three" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div>
@@ -15,10 +15,10 @@
 </template>
 <script>
 </script>
-<style scoped>
+<style>
 .overlay {
     z-index: 10000;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.3);
     position: fixed;
     top: 0;
     left: 0;

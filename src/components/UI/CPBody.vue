@@ -1,10 +1,10 @@
 <template>
-  <CPCustomers :customers="this.customers"/>
+  <CPCustomers :customers="this.customers" :isFetchingData="this.isFetchingData" />
 </template>
 <script>
 import CPCustomers from '../customers/CPCustomers.vue';
 export default {
-  props: ['customers'],
+  props: ['customers', 'isFetchingData'],
   components: {
     CPCustomers,
   },

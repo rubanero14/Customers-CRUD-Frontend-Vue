@@ -1,7 +1,6 @@
 <template>
   <CPHeader />
-  <LoadingSpinner v-if="this.$store.state.isLoading" />
-  <CPBody :customers="this.customers" v-else />
+  <CPBody :customers="this.customers" :isFetchingData="this.isFetchingData" />
   <CPFooter />
 </template>
 
@@ -10,7 +9,6 @@ import axios from "axios";
 import CPHeader from "./components/UI/CPHeader.vue";
 import CPBody from "./components/UI/CPBody.vue";
 import CPFooter from "./components/UI/CPFooter.vue";
-import LoadingSpinner from "./components/UI/LoadingSpinner.vue";
 
 export default {
   name: "CDM-Tool",
@@ -18,14 +16,13 @@ export default {
     CPHeader,
     CPBody,
     CPFooter,
-    LoadingSpinner,
   },
   data() {
     return {
-      getAllCustomersUrl:
+      getAllCustomersEndpoint:
         "http://localhost:3000/customers",
       customers: [],
-      isLoading: false,
+      isFetchingData: false,
     };
   },
   mounted() {
@@ -41,15 +38,15 @@ export default {
   },
   methods: {
     async getAllCustomers() {
-      this.isLoading = true;
+      this.isFetchingData = true;
       try {
-        const response = await axios.get(this.getAllCustomersUrl);
+        const response = await axios.get(this.getAllCustomersEndpoint);
         this.customers = response.data;
-        console.log(response.data);
+        this.isFetchingData = false;
       } catch (error) {
         console.error(error);
+        this.isFetchingData = false;
       }
-      this.isLoading = true;
     },
     setAppTitle() {
       // Set App Title
