@@ -217,8 +217,8 @@ export default {
       if (
         this.firstName === "" ||
         this.lastName === "" ||
-        this.age === null ||
-        this.mobileNo === null ||
+        this.age === "" ||
+        this.mobileNo === "" ||
         this.email === ""
       ) {
         return (this.formValidationAlert = true);
