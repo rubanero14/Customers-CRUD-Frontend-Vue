@@ -1,44 +1,30 @@
 <template>
   <LoadingSpinner v-if="this.$store.getters.isLoading" />
-  <center>
-    <div class="col-12" v-if="!this.showRegistrationForm">
-      <a
-        class="toggle-btn-registration btn btn-outline-secondary mb-3 me-2"
-        target="_blank"
-        href="https://github.com/rubanero14/Customers-CRUD-Backend-Node"
-      >
-        <SVG
-          :size="'sm'"
-          :viewBox="'0 0 448 512'"
-          :d="'M224 508c-6.7 0-13.5-1.8-19.4-5.2l-61.7-36.5c-9.2-5.2-4.7-7-1.7-8 12.3-4.3 14.8-5.2 27.9-12.7 1.4-.8 3.2-.5 4.6.4l47.4 28.1c1.7 1 4.1 1 5.7 0l184.7-106.6c1.7-1 2.8-3 2.8-5V149.3c0-2.1-1.1-4-2.9-5.1L226.8 37.7c-1.7-1-4-1-5.7 0L36.6 144.3c-1.8 1-2.9 3-2.9 5.1v213.1c0 2 1.1 4 2.9 4.9l50.6 29.2c27.5 13.7 44.3-2.4 44.3-18.7V167.5c0-3 2.4-5.3 5.4-5.3h23.4c2.9 0 5.4 2.3 5.4 5.3V378c0 36.6-20 57.6-54.7 57.6-10.7 0-19.1 0-42.5-11.6l-48.4-27.9C8.1 389.2.7 376.3.7 362.4V149.3c0-13.8 7.4-26.8 19.4-33.7L204.6 9c11.7-6.6 27.2-6.6 38.8 0l184.7 106.7c12 6.9 19.4 19.8 19.4 33.7v213.1c0 13.8-7.4 26.7-19.4 33.7L243.4 502.8c-5.9 3.4-12.6 5.2-19.4 5.2zm149.1-210.1c0-39.9-27-50.5-83.7-58-57.4-7.6-63.2-11.5-63.2-24.9 0-11.1 4.9-25.9 47.4-25.9 37.9 0 51.9 8.2 57.7 33.8.5 2.4 2.7 4.2 5.2 4.2h24c1.5 0 2.9-.6 3.9-1.7s1.5-2.6 1.4-4.1c-3.7-44.1-33-64.6-92.2-64.6-52.7 0-84.1 22.2-84.1 59.5 0 40.4 31.3 51.6 81.8 56.6 60.5 5.9 65.2 14.8 65.2 26.7 0 20.6-16.6 29.4-55.5 29.4-48.9 0-59.6-12.3-63.2-36.6-.4-2.6-2.6-4.5-5.3-4.5h-23.9c-3 0-5.3 2.4-5.3 5.3 0 31.1 16.9 68.2 97.8 68.2 58.4-.1 92-23.2 92-63.4z'"
-        />
-        Source Code Backend
-      </a>
-      <a
-        class="toggle-btn-registration btn btn-outline-secondary mb-3 me-2"
-        target="_blank"
-        href="https://github.com/rubanero14/Customers-CRUD-Frontend-Vue"
-      >
-        <SVG
-          :size="'sm'"
-          :viewBox="'0 0 448 512'"
-          :d="'M356.9 64.3H280l-56 88.6-48-88.6H0L224 448 448 64.3h-91.1zm-301.2 32h53.8L224 294.5 338.4 96.3h53.8L224 384.5 55.7 96.3z'"
-        />
-        Source Code Frontend
-      </a>
-      <button
-        class="toggle-btn-registration btn btn-outline-primary mb-3"
-        @click="toggleRegistrationForm"
-      >
-        <SVG
-          :size="'sm'"
-          :viewBox="'0 0 640 512'"
-          :d="'M352 128c0 70.7-57.3 128-128 128s-128-57.3-128-128S153.3 0 224 0s128 57.3 128 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z'"
-        />
-        Add New Customer
-      </button>
-    </div>
-    <div class="col-12 col-md-6 col-xl-4" v-else>
+  <div class="col-6 col-md-4" v-if="!this.showRegistrationForm">
+    <a class="toggle-btn-registration btn btn-outline-secondary mb-3" target="_blank"
+      href="https://github.com/rubanero14/Customers-CRUD-Backend-Node">
+      <SVG :size="'sm'" :viewBox="'0 0 448 512'"
+        :d="'M224 508c-6.7 0-13.5-1.8-19.4-5.2l-61.7-36.5c-9.2-5.2-4.7-7-1.7-8 12.3-4.3 14.8-5.2 27.9-12.7 1.4-.8 3.2-.5 4.6.4l47.4 28.1c1.7 1 4.1 1 5.7 0l184.7-106.6c1.7-1 2.8-3 2.8-5V149.3c0-2.1-1.1-4-2.9-5.1L226.8 37.7c-1.7-1-4-1-5.7 0L36.6 144.3c-1.8 1-2.9 3-2.9 5.1v213.1c0 2 1.1 4 2.9 4.9l50.6 29.2c27.5 13.7 44.3-2.4 44.3-18.7V167.5c0-3 2.4-5.3 5.4-5.3h23.4c2.9 0 5.4 2.3 5.4 5.3V378c0 36.6-20 57.6-54.7 57.6-10.7 0-19.1 0-42.5-11.6l-48.4-27.9C8.1 389.2.7 376.3.7 362.4V149.3c0-13.8 7.4-26.8 19.4-33.7L204.6 9c11.7-6.6 27.2-6.6 38.8 0l184.7 106.7c12 6.9 19.4 19.8 19.4 33.7v213.1c0 13.8-7.4 26.7-19.4 33.7L243.4 502.8c-5.9 3.4-12.6 5.2-19.4 5.2zm149.1-210.1c0-39.9-27-50.5-83.7-58-57.4-7.6-63.2-11.5-63.2-24.9 0-11.1 4.9-25.9 47.4-25.9 37.9 0 51.9 8.2 57.7 33.8.5 2.4 2.7 4.2 5.2 4.2h24c1.5 0 2.9-.6 3.9-1.7s1.5-2.6 1.4-4.1c-3.7-44.1-33-64.6-92.2-64.6-52.7 0-84.1 22.2-84.1 59.5 0 40.4 31.3 51.6 81.8 56.6 60.5 5.9 65.2 14.8 65.2 26.7 0 20.6-16.6 29.4-55.5 29.4-48.9 0-59.6-12.3-63.2-36.6-.4-2.6-2.6-4.5-5.3-4.5h-23.9c-3 0-5.3 2.4-5.3 5.3 0 31.1 16.9 68.2 97.8 68.2 58.4-.1 92-23.2 92-63.4z'" />
+      <span class="ms-1 d-none d-md-inline-block">Source Code</span> Backend
+    </a>
+  </div>
+  <div class="col-6 col-md-4" v-if="!this.showRegistrationForm">
+    <a class="toggle-btn-registration btn btn-outline-secondary mb-3" target="_blank"
+      href="https://github.com/rubanero14/Customers-CRUD-Frontend-Vue">
+      <SVG :size="'sm'" :viewBox="'0 0 448 512'"
+        :d="'M356.9 64.3H280l-56 88.6-48-88.6H0L224 448 448 64.3h-91.1zm-301.2 32h53.8L224 294.5 338.4 96.3h53.8L224 384.5 55.7 96.3z'" />
+      <span class="ms-1 d-none d-md-inline-block">Source Code</span> Frontend
+    </a>
+  </div>
+  <div class="col-12 col-md-4" v-if="!this.showRegistrationForm">
+    <button class="toggle-btn-registration btn btn-outline-primary mb-3" @click="toggleRegistrationForm">
+      <SVG :size="'sm'" :viewBox="'0 0 640 512'"
+        :d="'M352 128c0 70.7-57.3 128-128 128s-128-57.3-128-128S153.3 0 224 0s128 57.3 128 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z'" />
+      Add New Customer
+    </button>
+  </div>
+  <center v-else>
+    <div class="col-12 col-md-6 col-xl-4">
       <transition appear name="fade" mode="out-in">
         <CardComponent>
           <div
@@ -220,7 +206,7 @@ export default {
   data() {
     return {
       registrationEndPoint:
-        "http://localhost:3000/customers",
+        "https://customers-crud-backend.onrender.com/customers",
       firstName: "",
       lastName: "",
       age: "",
@@ -325,11 +311,6 @@ label::after {
 }
 
 .toggle-btn-registration {
-  width: auto;
-}
-@media (max-width: 768px) {
-  .toggle-btn-registration {
-    width: 100%;
-  }
+  width: 100%;
 }
 </style>
