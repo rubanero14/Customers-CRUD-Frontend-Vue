@@ -1,6 +1,7 @@
 <template>
   <CPHeader />
-  <CPBody :customers="this.customers" :isFetchingData="this.isFetchingData" :fetchError ="this.fetchError" />
+  <CPBody :customers="this.customers" :isFetchingData="this.isFetchingData" :fetchError ="this.fetchError" :fetchCode="this.fetchCode" />
+  <CPSnackbar :snackBarView="this.fetchCode" v-if="(this.snackBarActivation > 0)" @click="(this.snackBarActivation = 0)"/>
   <CPFooter />
 </template>
 
@@ -9,6 +10,7 @@ import axios from "axios";
 import CPHeader from "./components/UI/CPHeader.vue";
 import CPBody from "./components/UI/CPBody.vue";
 import CPFooter from "./components/UI/CPFooter.vue";
+import CPSnackbar from "./components/UI/CPSnackbar.vue";
 
 export default {
   name: "CDM-Tool",
@@ -16,6 +18,7 @@ export default {
     CPHeader,
     CPBody,
     CPFooter,
+    CPSnackbar,
   },
   data() {
     return {
@@ -25,35 +28,46 @@ export default {
       isFetchingData: false,
       fetchCount: 0,
       fetchError: false,
+      fetchCode: undefined,
+      snackBarActivation: 0,
+      snackBarHide: true,
     };
   },
   mounted() {
     this.setAppTitle();
 
-    // Get all list of customers data
-    this.getAllCustomers();
+    this.getAllCustomers(0);
 
     // Polling logic to update all customers data from server every 5 seconds
     setInterval(() => {
-      this.getAllCustomers();
-    }, 5000);
+      this.getAllCustomers(1);
+    }, 10000);
   },
   methods: {
-    async getAllCustomers() {
-      if (this.fetchCount === 5) {
-        this.isFetchingData = false;
-        return this.fetchError = true;
-      } else {
-        this.isFetchingData = true;
-        try {
-          const response = await axios.get(this.getAllCustomersEndpoint);
-          this.customers = response.data;
+    async getAllCustomers(val) {
+      if (navigator.onLine) {
+        if (this.fetchCount === 5) {
+          this.fetchCode = 503;
+          this.snackBarActivation = val + 1;
           this.isFetchingData = false;
+          this.fetchError = true;
+        } else {
+          this.isFetchingData = true;
           this.fetchError = false;
-        } catch {
-          this.fetchCount++;
-          console.log(this.fetchCount)
+          try {
+            const response = await axios.get(this.getAllCustomersEndpoint);
+            this.customers = response.data;
+            this.fetchCode = 200;
+            this.isFetchingData = false;
+            this.fetchError = false;
+          } catch {
+            this.fetchCount++;
+          }
         }
+      } else {
+        this.snackBarActivation = val + 1;
+        this.fetchCode = 404;
+        this.fetchError = true;
       }
     },
     setAppTitle() {

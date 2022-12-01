@@ -213,7 +213,8 @@
     </center>
   </div>
   <div class="col-12" v-else>
-      <CPAlert v-if="this.fetchError"><span class="text-danger">Error 503</span>: Server offline!</CPAlert>
+      <CPAlert v-if="(this.fetchError && this.fetchCode === 503)"><span class="text-danger">Error 503</span>: Server offline!</CPAlert>
+      <CPAlert v-if="(this.fetchError && this.fetchCode === 404)"><span class="text-danger">Error 404</span>: Network offline!</CPAlert>
       <CPAlert v-if="this.isFetchingData && customers === undefined">Please wait, data being fetched from server...</CPAlert>
       <CPAlert v-if="(customers !== undefined && customers.length === 0)">No clients registered for now. Register a new one?</CPAlert>
   </div>
@@ -228,7 +229,7 @@ import LoadingSpinner from "../UI/LoadingSpinner.vue";
 import CPAlert from "../UI/CPAlert.vue";
 
 export default {
-  props: ["customers", "isFetchingData", "fetchError"],
+  props: ["customers", "isFetchingData", "fetchError", "fetchCode"],
   data() {
     return {
       isViewDetails: false,
