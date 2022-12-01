@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       getAllCustomersEndpoint:
-        "https://customers-crud-backend.onrender.com/customers",
+        "http://localhost:3000/customers",
       customers: undefined,
       isFetchingData: false,
       fetchCount: 0,
