@@ -165,7 +165,7 @@ export default {
   data() {
     return {
       updateEndPoint:
-        "https://customers-crud-backend.onrender.com/customers/edit/",
+        "http://localhost:3000/customers/edit/",
       id: this.customer.id,
       firstName: this.customer.firstName,
       lastName: this.customer.lastName,
