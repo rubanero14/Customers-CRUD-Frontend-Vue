@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <CreateCustomer class="mb-3" />
-            <CPCustomerList :customers="this.customers" :isFetchingData="this.isFetchingData" />
+            <CPCustomerList :customers="this.customers" :isFetchingData="this.isFetchingData" :fetchError ="this.fetchError" />
         </div>
     </div>
 </template>
@@ -11,7 +11,7 @@ import CPCustomerList from './CPCustomerList.vue';
 import CreateCustomer from './CreateCustomer.vue';
 
 export default {
-    props: ['customers', "isFetchingData"],
+    props: ['customers', "isFetchingData", "fetchError"],
     components: {
         CPCustomerList,
         CreateCustomer,

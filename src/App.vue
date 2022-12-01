@@ -1,6 +1,6 @@
 <template>
   <CPHeader />
-  <CPBody :customers="this.customers" :isFetchingData="this.isFetchingData" />
+  <CPBody :customers="this.customers" :isFetchingData="this.isFetchingData" :fetchError ="this.fetchError" />
   <CPFooter />
 </template>
 
@@ -21,8 +21,10 @@ export default {
     return {
       getAllCustomersEndpoint:
         "https://customers-crud-backend.onrender.com/customers",
-      customers: [],
+      customers: undefined,
       isFetchingData: false,
+      fetchCount: 0,
+      fetchError: false,
     };
   },
   mounted() {
@@ -38,14 +40,20 @@ export default {
   },
   methods: {
     async getAllCustomers() {
-      this.isFetchingData = true;
-      try {
-        const response = await axios.get(this.getAllCustomersEndpoint);
-        this.customers = response.data;
+      if (this.fetchCount === 5) {
         this.isFetchingData = false;
-      } catch (error) {
-        console.error(error);
-        this.isFetchingData = false;
+        return this.fetchError = true;
+      } else {
+        this.isFetchingData = true;
+        try {
+          const response = await axios.get(this.getAllCustomersEndpoint);
+          this.customers = response.data;
+          this.isFetchingData = false;
+          this.fetchError = false;
+        } catch {
+          this.fetchCount++;
+          console.log(this.fetchCount)
+        }
       }
     },
     setAppTitle() {

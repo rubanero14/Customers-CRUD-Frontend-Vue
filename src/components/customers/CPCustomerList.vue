@@ -1,6 +1,6 @@
 <template>
   <LoadingSpinner v-if="this.$store.getters.isLoading && !this.isEditDetail" />
-  <div class="col-12" v-if="customers.length > 0">
+  <div class="col-12" v-if="(customers !== undefined && customers.length > 0 && !this.fetchError)">
     <center>
       <div v-if="!isViewDetails">
         <h1 class="text-secondary mb-3"><strong>List of Customers</strong></h1>
@@ -213,15 +213,9 @@
     </center>
   </div>
   <div class="col-12" v-else>
-    <p
-      class="text-center text-secondary no-clients-alert mb-0"
-      v-if="this.isFetchingData"
-    >
-      Please wait, data being fetched from server...
-    </p>
-    <p class="text-center text-secondary no-clients-alert mb-0" v-else>
-      No clients registered for now. Register a new one?
-    </p>
+      <CPAlert v-if="this.fetchError"><span class="text-danger">Error 503</span>: Server offline!</CPAlert>
+      <CPAlert v-if="this.isFetchingData && customers === undefined">Please wait, data being fetched from server...</CPAlert>
+      <CPAlert v-if="(customers !== undefined && customers.length === 0)">No clients registered for now. Register a new one?</CPAlert>
   </div>
 </template>
 <script>
@@ -231,9 +225,10 @@ import UpdateCustomer from "./UpdateCustomer.vue";
 import ToolTip from "../UI/ToolTip.vue";
 import SVG from "../UI/SVG.vue";
 import LoadingSpinner from "../UI/LoadingSpinner.vue";
+import CPAlert from "../UI/CPAlert.vue";
 
 export default {
-  props: ["customers", "isFetchingData"],
+  props: ["customers", "isFetchingData", "fetchError"],
   data() {
     return {
       isViewDetails: false,
@@ -249,11 +244,12 @@ export default {
     ToolTip,
     SVG,
     LoadingSpinner,
+    CPAlert,
   },
   mounted() {
     setInterval(() => {
       this.setAppTitle();
-    }, 500);
+    }, 100);
   },
   methods: {
     viewDetails(cm) {
@@ -297,15 +293,15 @@ export default {
       if (this.isEditDetail) {
         document.title = `Update ${this.customer.firstName} ${this.customer.lastName}'s Info - CIM`;
       }
+
+      if (this.fetchError) {
+        document.title = `Error 503: Server Offline - CIM`;
+      }
     },
   },
 };
 </script>
 <style scoped>
-.no-clients-alert {
-  font-weight: bold;
-  font-size: 20px;
-}
 .btn {
   width: 300px;
 }

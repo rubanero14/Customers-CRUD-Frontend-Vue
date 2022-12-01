@@ -18,7 +18,7 @@
 <style>
 .overlay {
     z-index: 10000;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.4);
     position: fixed;
     top: 0;
     left: 0;
