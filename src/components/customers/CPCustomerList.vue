@@ -1,6 +1,9 @@
 <template>
   <LoadingSpinner v-if="this.$store.getters.isLoading && !this.isEditDetail" />
-  <div class="col-12" v-if="(customers !== undefined && customers.length > 0 && !this.fetchError)">
+  <div
+    class="col-12"
+    v-if="customers !== undefined && customers.length > 0 && !this.fetchError"
+  >
     <center>
       <div v-if="!isViewDetails">
         <h1 class="text-secondary mb-3"><strong>List of Customers</strong></h1>
@@ -213,10 +216,18 @@
     </center>
   </div>
   <div class="col-12" v-else>
-      <CPAlert v-if="(this.fetchError && this.fetchCode === 503)"><span class="text-danger">Error 503</span>: Server offline!</CPAlert>
-      <CPAlert v-if="(this.fetchError && this.fetchCode === 404)"><span class="text-danger">Error 404</span>: Network offline!</CPAlert>
-      <CPAlert v-if="this.isFetchingData && customers === undefined">Please wait, data being fetched from server...</CPAlert>
-      <CPAlert v-if="(customers !== undefined && customers.length === 0)">No clients registered for now. Register a new one?</CPAlert>
+    <CPAlert v-if="this.fetchError && this.fetchCode === 503"
+      ><span class="text-danger">Error 503</span>: Server offline!</CPAlert
+    >
+    <CPAlert v-if="this.fetchError && this.fetchCode === 404"
+      ><span class="text-danger">Error 404</span>: Network offline!</CPAlert
+    >
+    <CPAlert v-if="this.isFetchingData && customers === undefined"
+      >Please wait, data being fetched from server...</CPAlert
+    >
+    <CPAlert v-if="customers !== undefined && customers.length === 0"
+      >No clients registered for now. Register a new one?</CPAlert
+    >
   </div>
 </template>
 <script>
@@ -236,7 +247,7 @@ export default {
       isEditDetail: false,
       isDelete: false,
       isDeleteSuccess: undefined,
-      deleteEndpoint: "http://localhost:3000/deleteUser",
+      deleteEndpoint: "https://customers-crud-backend.onrender.com/deleteUser",
     };
   },
   components: {

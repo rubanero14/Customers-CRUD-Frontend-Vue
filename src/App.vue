@@ -1,7 +1,16 @@
 <template>
   <CPHeader />
-  <CPBody :customers="this.customers" :isFetchingData="this.isFetchingData" :fetchError ="this.fetchError" :fetchCode="this.fetchCode" />
-  <CPSnackbar :snackBarView="this.fetchCode" v-if="(this.snackBarActivation > 0)" @click="(this.snackBarActivation = 0)"/>
+  <CPBody
+    :customers="this.customers"
+    :isFetchingData="this.isFetchingData"
+    :fetchError="this.fetchError"
+    :fetchCode="this.fetchCode"
+  />
+  <CPSnackbar
+    :snackBarView="this.fetchCode"
+    v-if="this.snackBarActivation > 0"
+    @click="this.snackBarActivation = 0"
+  />
   <CPFooter />
 </template>
 
@@ -23,7 +32,7 @@ export default {
   data() {
     return {
       getAllCustomersEndpoint:
-        "http://localhost:3000/customers",
+        "https://customers-crud-backend.onrender.com/customers",
       customers: undefined,
       isFetchingData: false,
       fetchCount: 0,
@@ -58,6 +67,7 @@ export default {
             const response = await axios.get(this.getAllCustomersEndpoint);
             this.customers = response.data;
             this.fetchCode = 200;
+            this.fetchCount = 0;
             this.isFetchingData = false;
             this.fetchError = false;
           } catch {
