@@ -55,24 +55,21 @@ export default {
   methods: {
     async getAllCustomers(val) {
       if (navigator.onLine) {
-        if (this.fetchCount === 5) {
+        this.isFetchingData = true;
+        this.fetchError = false;
+        try {
+          const response = await axios.get(this.getAllCustomersEndpoint);
+          this.customers = response.data;
+          this.fetchCode = 200;
+          this.fetchCount = 0;
+          this.isFetchingData = false;
+          this.fetchError = false;
+        } catch {
           this.fetchCode = 503;
           this.snackBarActivation = val + 1;
           this.isFetchingData = false;
           this.fetchError = true;
-        } else {
-          this.isFetchingData = true;
-          this.fetchError = false;
-          try {
-            const response = await axios.get(this.getAllCustomersEndpoint);
-            this.customers = response.data;
-            this.fetchCode = 200;
-            this.fetchCount = 0;
-            this.isFetchingData = false;
-            this.fetchError = false;
-          } catch {
-            this.fetchCount++;
-          }
+          this.fetchCount++;
         }
       } else {
         this.snackBarActivation = val + 1;
