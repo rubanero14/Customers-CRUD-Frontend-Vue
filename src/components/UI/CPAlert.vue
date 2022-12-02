@@ -1,11 +1,7 @@
 <template>
-    <p class="text-center text-secondary no-clients-alert mb-0">
-        <slot />
-    </p>
+    <h1 class="text-secondary mb-3">
+        <strong>
+                <slot />
+        </strong>
+    </h1>
 </template>
-<style>
-.no-clients-alert {
-    font-weight: bold;
-    font-size: 20px;
-}
-</style>

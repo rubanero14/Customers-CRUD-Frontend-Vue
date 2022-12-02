@@ -95,6 +95,9 @@ export default {
 
 <style>
 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css");
+h1 {
+  text-align: center;
+}
 
 h5 {
   margin-right: 5px;
