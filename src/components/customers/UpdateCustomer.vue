@@ -165,7 +165,7 @@
     v-show="!this.isUpdateSuccess && this.isUpdateSuccess !== undefined"
     :danger="true"
     :success="false"
-    @click="this.isUpdateSuccess === undefined"
+    @click="this.isUpdateSuccess = undefined"
     :message="'Update was unsuccessful'"
   />
 </template>

@@ -226,7 +226,7 @@
     "
     :danger="true"
     :success="false"
-    @click="this.isRegistrationSuccess === undefined"
+    @click="this.isRegistrationSuccess = undefined"
     :message="'Registration was unsuccessful'"
   />
 </template>

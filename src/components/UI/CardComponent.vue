@@ -15,7 +15,6 @@
     background-clip: padding-box;
     background: transparent;
     padding: 30px;
-    width: fit-content;
     width: 360px;
 }
 </style>

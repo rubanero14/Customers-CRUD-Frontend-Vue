@@ -240,7 +240,7 @@
     v-show="!this.isDeleteSuccess && this.isDeleteSuccess !== undefined"
     :danger="true"
     :success="false"
-    @click="this.isDeleteSuccess === undefined"
+    @click="this.isDeleteSuccess = undefined"
     :message="'Delete was unsuccessful'"
   />
 </template>
