@@ -247,7 +247,7 @@ export default {
       isEditDetail: false,
       isDelete: false,
       isDeleteSuccess: undefined,
-      deleteEndpoint: "http://localhost:3000/deleteUser",
+      deleteEndpoint: "https://customers-crud-backend.onrender.com/deleteUser",
     };
   },
   components: {

@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       getAllCustomersEndpoint:
-        "http://localhost:3000/customers",
+        "https://customers-crud-backend.onrender.com/customers",
       customers: undefined,
       isFetchingData: false,
       fetchCount: 0,
@@ -64,6 +64,7 @@ export default {
           this.fetchCount = 0;
           this.isFetchingData = false;
           this.fetchError = false;
+          this.autoCloseSnackBar();
         } catch {
           this.fetchCode = 503;
           this.snackBarActivation = val + 1;
@@ -81,6 +82,11 @@ export default {
       // Set App Title
       document.title = "Home - CIM";
     },
+    autoCloseSnackBar() {
+      setTimeout(() => {
+        this.snackBarActivation = 0;
+      }, 5000);
+    }
   },
 };
 </script>

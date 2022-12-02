@@ -224,7 +224,7 @@ export default {
   data() {
     return {
       registrationEndPoint:
-        "http://localhost:3000/customers",
+        "https://customers-crud-backend.onrender.com/customers",
       firstName: "",
       lastName: "",
       age: "",
