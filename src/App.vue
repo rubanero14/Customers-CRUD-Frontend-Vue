@@ -8,7 +8,7 @@
   />
   <CPSnackbar
     :snackBarView="this.fetchCode"
-    v-if="this.snackBarActivation > 0"
+    v-show="this.snackBarActivation > 0"
     @click="this.snackBarActivation = 0"
   />
   <CPFooter />
