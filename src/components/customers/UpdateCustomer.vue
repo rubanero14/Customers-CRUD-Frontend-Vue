@@ -159,14 +159,14 @@
     :danger="false"
     :success="true"
     @click="this.isUpdateSuccess = false"
-    :message="'Update was successful'"
+    :message="'Update successful'"
   />
   <CPSnackbar
     v-show="!this.isUpdateSuccess && this.isUpdateSuccess !== undefined"
     :danger="true"
     :success="false"
     @click="this.isUpdateSuccess = undefined"
-    :message="'Update was unsuccessful'"
+    :message="'Update unsuccessful'"
   />
 </template>
 <script>
@@ -231,9 +231,9 @@ export default {
           this.isUpdateSuccess = false;
         });
 
+      this.$store.dispatch("isLoading", false);
       // Garbage Collection for alerts
       setTimeout(() => {
-        this.$store.dispatch("isLoading", false);
         this.isUpdateSuccess = undefined;
         this.closeEdit(false);
       }, 3000);
