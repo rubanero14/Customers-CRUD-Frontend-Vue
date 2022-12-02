@@ -2,7 +2,7 @@
     <transition appear name="fade" mode="out-in">
         <div class="centered overlay">
             <div class="d-flex justify-content-center align-items-end alert-wrapper">
-                <CardComponent class="p-0 mb-5 mb-md-4 mx-2" style="width: fit-content;">
+                <CardComponent class="f-flex p-0 mb-5 mb-md-4 mx-2" style="width: fit-content;">
                     <div class="alert d-flex justify-content-center align-items-center mb-0"
                         :class="{ 'alert-danger': danger, 'alert-success': success }" role="alert">
                         <div class="me-2">
