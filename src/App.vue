@@ -6,9 +6,27 @@
     :fetchError="this.fetchError"
     :fetchCode="this.fetchCode"
   />
-  <CPSnackbar v-show="(this.offlineAlert > 0 && this.fetchCode === 404)" :danger="true" :success="false" @click="this.offlineAlert = 0" :message="'Network Offline'" />
-  <CPSnackbar v-show="(this.offlineAlert > 0 && this.fetchCode === 503)" :danger="true" :success="false" @click="this.offlineAlert = 0" :message="'Server Offline'" />
-  <CPSnackbar v-show="(this.offlineAlert > 0 && this.fetchCode === 200)" :danger="false" :success="true" @click="this.offlineAlert = 0" :message="'Back Online'" />
+  <CPSnackbar
+    v-show="this.offlineAlert > 0 && this.fetchCode === 404"
+    :danger="true"
+    :success="false"
+    @click="this.offlineAlert = 0"
+    :message="'Network Offline'"
+  />
+  <CPSnackbar
+    v-show="this.offlineAlert > 0 && this.fetchCode === 503"
+    :danger="true"
+    :success="false"
+    @click="this.offlineAlert = 0"
+    :message="'Server Offline'"
+  />
+  <CPSnackbar
+    v-show="this.offlineAlert > 0 && this.fetchCode === 200"
+    :danger="false"
+    :success="true"
+    @click="this.offlineAlert = 0"
+    :message="'Back Online'"
+  />
   <CPFooter />
 </template>
 
@@ -86,7 +104,7 @@ export default {
       setTimeout(() => {
         this.offlineAlert = 0;
       }, 5000);
-    }
+    },
   },
 };
 </script>

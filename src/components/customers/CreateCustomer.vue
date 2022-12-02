@@ -206,9 +206,29 @@
       <hr />
     </div>
   </center>
-  <CPSnackbar v-show="formValidationAlert" :danger="true" :success="false" @click="(formValidationAlert = false)" :message="'Please fill up the required fields'" />
-  <CPSnackbar v-show="this.isRegistrationSuccess" :danger="false" :success="true" @click="(this.isRegistrationSuccess = false)" :message="'Registration was successful'" />
-  <CPSnackbar v-show="(!this.isRegistrationSuccess && this.isRegistrationSuccess !== undefined)" :danger="true" :success="false" @click="(this.isRegistrationSuccess === undefined)" :message="'Registration was unsuccessful'" />
+  <CPSnackbar
+    v-show="formValidationAlert"
+    :danger="true"
+    :success="false"
+    @click="formValidationAlert = false"
+    :message="'Fill all required fields'"
+  />
+  <CPSnackbar
+    v-show="this.isRegistrationSuccess"
+    :danger="false"
+    :success="true"
+    @click="this.isRegistrationSuccess = false"
+    :message="'Registration was successful'"
+  />
+  <CPSnackbar
+    v-show="
+      !this.isRegistrationSuccess && this.isRegistrationSuccess !== undefined
+    "
+    :danger="true"
+    :success="false"
+    @click="this.isRegistrationSuccess === undefined"
+    :message="'Registration was unsuccessful'"
+  />
 </template>
 <script>
 import axios from "axios";

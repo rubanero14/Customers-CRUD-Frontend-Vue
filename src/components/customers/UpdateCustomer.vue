@@ -147,9 +147,27 @@
       Update was unsuccessful!
     </p>
   </div>
-  <CPSnackbar v-show="formValidationAlert" :danger="true" :success="false" @click="(formValidationAlert = false)" :message="'Please fill up the required fields'" />
-  <CPSnackbar v-show="this.isUpdateSuccess" :danger="false" :success="true" @click="(this.isUpdateSuccess = false)" :message="'Update was successful'" />
-  <CPSnackbar v-show="(!this.isUpdateSuccess && this.isUpdateSuccess !== undefined)" :danger="true" :success="false" @click="(this.isUpdateSuccess === undefined)" :message="'Update was unsuccessful'" />
+  <CPSnackbar
+    v-show="formValidationAlert"
+    :danger="true"
+    :success="false"
+    @click="formValidationAlert = false"
+    :message="'Fill all required fields'"
+  />
+  <CPSnackbar
+    v-show="this.isUpdateSuccess"
+    :danger="false"
+    :success="true"
+    @click="this.isUpdateSuccess = false"
+    :message="'Update was successful'"
+  />
+  <CPSnackbar
+    v-show="!this.isUpdateSuccess && this.isUpdateSuccess !== undefined"
+    :danger="true"
+    :success="false"
+    @click="this.isUpdateSuccess === undefined"
+    :message="'Update was unsuccessful'"
+  />
 </template>
 <script>
 import axios from "axios";
