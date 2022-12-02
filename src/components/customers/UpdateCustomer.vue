@@ -147,12 +147,16 @@
       Update was unsuccessful!
     </p>
   </div>
+  <CPSnackbar v-show="formValidationAlert" :danger="true" :success="false" @click="(formValidationAlert = false)" :message="'Please fill up the required fields'" />
+  <CPSnackbar v-show="this.isUpdateSuccess" :danger="false" :success="true" @click="(this.isUpdateSuccess = false)" :message="'Update was successful'" />
+  <CPSnackbar v-show="(!this.isUpdateSuccess && this.isUpdateSuccess !== undefined)" :danger="true" :success="false" @click="(this.isUpdateSuccess === undefined)" :message="'Update was unsuccessful'" />
 </template>
 <script>
 import axios from "axios";
 import ToolTip from "../UI/ToolTip.vue";
 import SVG from "../UI/SVG.vue";
 import LoadingSpinner from "../UI/LoadingSpinner.vue";
+import CPSnackbar from "../UI/CPSnackbar.vue";
 
 export default {
   props: ["customer", "toggleEdit"],
@@ -161,6 +165,7 @@ export default {
     ToolTip,
     SVG,
     LoadingSpinner,
+    CPSnackbar,
   },
   data() {
     return {

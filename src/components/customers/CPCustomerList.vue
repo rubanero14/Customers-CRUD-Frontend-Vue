@@ -229,6 +229,8 @@
       >No clients registered for now. Register a new one?</CPAlert
     >
   </div>
+  <CPSnackbar v-show="this.isDeleteSuccess" :danger="false" :success="true" @click="(this.isDeleteSuccess = false)" :message="'Deleted Successfully'" />
+  <CPSnackbar v-show="(!this.isDeleteSuccess && this.isDeleteSuccess !== undefined)" :danger="true" :success="false" @click="(this.isDeleteSuccess === undefined)" :message="'Delete was unsuccessful'" />
 </template>
 <script>
 import axios from "axios";
@@ -238,6 +240,7 @@ import ToolTip from "../UI/ToolTip.vue";
 import SVG from "../UI/SVG.vue";
 import LoadingSpinner from "../UI/LoadingSpinner.vue";
 import CPAlert from "../UI/CPAlert.vue";
+import CPSnackbar from "../UI/CPSnackbar.vue";
 
 export default {
   props: ["customers", "isFetchingData", "fetchError", "fetchCode"],
@@ -257,6 +260,7 @@ export default {
     SVG,
     LoadingSpinner,
     CPAlert,
+    CPSnackbar,
   },
   mounted() {
     setInterval(() => {

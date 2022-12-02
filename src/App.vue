@@ -6,11 +6,9 @@
     :fetchError="this.fetchError"
     :fetchCode="this.fetchCode"
   />
-  <CPSnackbar
-    :snackBarView="this.fetchCode"
-    v-show="this.snackBarActivation > 0"
-    @click="this.snackBarActivation = 0"
-  />
+  <CPSnackbar v-show="(this.offlineAlert > 0 && this.fetchCode === 404)" :danger="true" :success="false" @click="this.offlineAlert = 0" :message="'Network Offline'" />
+  <CPSnackbar v-show="(this.offlineAlert > 0 && this.fetchCode === 503)" :danger="true" :success="false" @click="this.offlineAlert = 0" :message="'Server Offline'" />
+  <CPSnackbar v-show="(this.offlineAlert > 0 && this.fetchCode === 200)" :danger="false" :success="true" @click="this.offlineAlert = 0" :message="'Back Online'" />
   <CPFooter />
 </template>
 
@@ -38,7 +36,7 @@ export default {
       fetchCount: 0,
       fetchError: false,
       fetchCode: undefined,
-      snackBarActivation: 0,
+      offlineAlert: 0,
       snackBarHide: true,
     };
   },
@@ -68,14 +66,14 @@ export default {
           this.autoCloseSnackBar();
         } catch {
           this.fetchCode = 503;
-          this.snackBarActivation = val + 1;
+          this.offlineAlert = val + 1;
           this.customers = undefined;
           this.isFetchingData = false;
           this.fetchError = true;
           this.fetchCount++;
         }
       } else {
-        this.snackBarActivation = val + 1;
+        this.offlineAlert = val + 1;
         this.fetchCode = 404;
         this.fetchError = true;
       }
@@ -86,7 +84,7 @@ export default {
     },
     autoCloseSnackBar() {
       setTimeout(() => {
-        this.snackBarActivation = 0;
+        this.offlineAlert = 0;
       }, 5000);
     }
   },
