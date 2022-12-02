@@ -1,8 +1,8 @@
 <template>
     <transition appear name="fade" mode="out-in">
         <div class="centered overlay">
-            <div class="d-flex justify-content-center align-items-end spinner">
-                <div class="alert d-flex mb-4" :class="{ 'alert-danger': this.snackBarView === 404 || this.snackBarView === 503, 'alert-success': this.snackBarView === 200 }" role="alert">
+            <div class="d-flex justify-content-center align-items-end alert-wrapper">
+                <div class="alert d-flex mb-4 mx-2" :class="{ 'alert-danger': this.snackBarView === 404 || this.snackBarView === 503, 'alert-success': this.snackBarView === 200 }" role="alert">
                     <div class="me-1">
                         <span v-if="(this.snackBarView === 404)">Network Offline</span>
                         <span v-else-if="(this.snackBarView === 503)">Server Offline</span>
@@ -31,10 +31,13 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
 }
 
+.alert-wrapper {
+    width: 100%;
+    height: 100%;
+    z-index: 10001;
+}
 .alert {
     position: relative;
     padding: 1rem 5rem;

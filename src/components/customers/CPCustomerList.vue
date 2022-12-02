@@ -217,10 +217,10 @@
   </div>
   <div class="col-12" v-else>
     <CPAlert v-if="this.fetchError && this.fetchCode === 503"
-      ><span class="text-danger">Error 503</span>: Server offline!</CPAlert
+      ><span class="text-danger">503</span>: Server offline!</CPAlert
     >
     <CPAlert v-if="this.fetchError && this.fetchCode === 404"
-      ><span class="text-danger">Error 404</span>: Network offline!</CPAlert
+      ><span class="text-danger">404</span>: Network offline!</CPAlert
     >
     <CPAlert v-if="this.isFetchingData && customers === undefined"
       >Please wait, data being fetched from server...</CPAlert
@@ -306,8 +306,12 @@ export default {
         document.title = `Update ${this.customer.firstName} ${this.customer.lastName}'s Info - CIM`;
       }
 
-      if (this.fetchError) {
-        document.title = `Error 503: Server Offline - CIM`;
+      if (this.fetchError && this.fetchCode === 503) {
+        document.title = `503: Server Offline - CIM`;
+      }
+
+      if (this.fetchError && this.fetchCode === 404) {
+        document.title = `404: Network Offline - CIM`;
       }
     },
   },

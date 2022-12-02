@@ -54,6 +54,7 @@ export default {
   },
   methods: {
     async getAllCustomers(val) {
+      // To listen user device is connected to internet
       if (navigator.onLine) {
         this.isFetchingData = true;
         this.fetchError = false;
@@ -68,6 +69,7 @@ export default {
         } catch {
           this.fetchCode = 503;
           this.snackBarActivation = val + 1;
+          this.customers = undefined;
           this.isFetchingData = false;
           this.fetchError = true;
           this.fetchCount++;
