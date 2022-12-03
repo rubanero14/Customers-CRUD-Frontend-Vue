@@ -7,12 +7,7 @@
                         :class="{ 'alert-danger': danger, 'alert-success': success }" role="alert">
                         <div class="me-2">
                             <strong>
-                                <span v-show="success">
-                                    {{ message }}
-                                </span>
-                                <span v-show="danger">
-                                    {{ message }}
-                                </span>
+                                {{ message }}
                             </strong>
                         </div>
                         <SVG v-show="success" class="mb-0" :size="'lg'" :viewBox="'0 0 512 512'"
