@@ -85,7 +85,6 @@ export default {
         } catch {
           this.fetchCode = 503;
           this.offlineAlert = val + 1;
-          this.customers = undefined;
           this.isFetchingData = false;
           this.fetchError = true;
           this.fetchCount++;

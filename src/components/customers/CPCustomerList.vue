@@ -2,7 +2,7 @@
   <LoadingSpinner v-if="this.$store.getters.isLoading && !this.isEditDetail" />
   <div
     class="col-12"
-    v-if="customers !== undefined && customers.length > 0 && !this.fetchError"
+    v-if="(customers !== undefined && customers.length > 0)"
   >
     <center>
       <div v-if="!isViewDetails">
@@ -216,12 +216,6 @@
     </center>
   </div>
   <div class="col-12" v-else>
-    <CPAlert v-if="this.fetchError && this.fetchCode === 503"
-      ><span class="text-danger">503</span>: Server offline!</CPAlert
-    >
-    <CPAlert v-if="this.fetchError && this.fetchCode === 404"
-      ><span class="text-danger">404</span>: Network offline!</CPAlert
-    >
     <CPAlert v-if="this.isFetchingData && customers === undefined"
       >Please wait, data being fetched from server...</CPAlert
     >
