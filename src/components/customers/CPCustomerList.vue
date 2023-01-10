@@ -43,17 +43,11 @@
                     customer.firstName + " " + customer.lastName
                   }}</strong>
                 </p>
-                <button
-                  class="d-block btn btn-outline-secondary"
-                  @click="viewDetails(customer)"
-                >
-                  <SVG
-                    :size="'sm'"
-                    :viewBox="'0 0 512 512'"
-                    :d="'M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-144c-17.7 0-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32z'"
-                  />
+                <CPButton btnClass="d-block btn btn-outline-secondary" :disabled="this.$store.getters.isLoading" @click="viewDetails(customer)">
+                  <SVG :size="'sm'" :viewBox="'0 0 512 512'"
+                    :d="'M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-144c-17.7 0-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32z'" />
                   View Details
-                </button>
+                </CPButton>
               </div>
             </center>
           </CardComponent>
@@ -122,41 +116,23 @@
               </p>
               <hr class="my-2" />
               <div v-show="!this.isDelete">
-                <button
-                  class="btn btn-outline-danger mb-2"
-                  @click="this.isDelete = true"
-                >
-                  <SVG
-                    :size="'sm'"
-                    :viewBox="'0 0 448 512'"
-                    :d="'M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z'"
-                  />
+                <CPButton btnClass="btn btn-outline-danger mb-2" :disabled="this.$store.getters.isLoading" @click="this.isDelete = true">
+                  <SVG :size="'sm'" :viewBox="'0 0 448 512'"
+                    :d="'M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z'" />
                   Delete
-                </button>
+                </CPButton>
                 <br />
-                <button
-                  class="btn btn-outline-primary mb-2"
-                  @click="editDetails(customer)"
-                >
-                  <SVG
-                    :size="'sm'"
-                    :viewBox="'0 0 640 512'"
-                    :d="'M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H322.8c-3.1-8.8-3.7-18.4-1.4-27.8l15-60.1c2.8-11.3 8.6-21.5 16.8-29.7l40.3-40.3c-32.1-31-75.7-50.1-123.9-50.1H178.3zm435.5-68.3c-15.6-15.6-40.9-15.6-56.6 0l-29.4 29.4 71 71 29.4-29.4c15.6-15.6 15.6-40.9 0-56.6l-14.4-14.4zM375.9 417c-4.1 4.1-7 9.2-8.4 14.9l-15 60.1c-1.4 5.5 .2 11.2 4.2 15.2s9.7 5.6 15.2 4.2l60.1-15c5.6-1.4 10.8-4.3 14.9-8.4L576.1 358.7l-71-71L375.9 417z'"
-                  />
+                <CPButton btnClass="btn btn-outline-primary mb-2" :disabled="this.$store.getters.isLoading" @click="editDetails(customer)">
+                  <SVG :size="'sm'" :viewBox="'0 0 640 512'"
+                    :d="'M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H322.8c-3.1-8.8-3.7-18.4-1.4-27.8l15-60.1c2.8-11.3 8.6-21.5 16.8-29.7l40.3-40.3c-32.1-31-75.7-50.1-123.9-50.1H178.3zm435.5-68.3c-15.6-15.6-40.9-15.6-56.6 0l-29.4 29.4 71 71 29.4-29.4c15.6-15.6 15.6-40.9 0-56.6l-14.4-14.4zM375.9 417c-4.1 4.1-7 9.2-8.4 14.9l-15 60.1c-1.4 5.5 .2 11.2 4.2 15.2s9.7 5.6 15.2 4.2l60.1-15c5.6-1.4 10.8-4.3 14.9-8.4L576.1 358.7l-71-71L375.9 417z'" />
                   Update
-                </button>
+                </CPButton>
                 <br />
-                <button
-                  class="btn btn-outline-success mb-2"
-                  @click="this.isViewDetails = false"
-                >
-                  <SVG
-                    :size="'sm'"
-                    :viewBox="'0 0 512 512'"
-                    :d="'M48.5 224H40c-13.3 0-24-10.7-24-24V72c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2L98.6 96.6c87.6-86.5 228.7-86.2 315.8 1c87.5 87.5 87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3c-62.2-62.2-162.7-62.5-225.3-1L185 183c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8H48.5z'"
-                  />
+                <CPButton btnClass="btn btn-outline-success mb-2" :disabled="this.$store.getters.isLoading" @click="this.isViewDetails = false">
+                  <SVG :size="'sm'" :viewBox="'0 0 512 512'"
+                    :d="'M48.5 224H40c-13.3 0-24-10.7-24-24V72c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2L98.6 96.6c87.6-86.5 228.7-86.2 315.8 1c87.5 87.5 87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3c-62.2-62.2-162.7-62.5-225.3-1L185 183c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8H48.5z'" />
                   Back
-                </button>
+                </CPButton>
               </div>
               <p v-show="this.isDelete" class="text-danger text-center mb-2">
                 <strong>
@@ -165,29 +141,17 @@
                 </strong>
               </p>
               <div v-show="this.isDelete">
-                <button
-                  class="btn btn-outline-danger mb-2"
-                  @click="deleteCustomer(customer.id)"
-                >
-                  <SVG
-                    :size="'sm'"
-                    :viewBox="'0 0 448 512'"
-                    :d="'M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z'"
-                  />
+                <CPButton btnClass="btn btn-outline-danger mb-2" :disabled="this.$store.getters.isLoading" @click="deleteCustomer(customer.id)">
+                  <SVG :size="'sm'" :viewBox="'0 0 448 512'"
+                    :d="'M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z'" />
                   Yes
-                </button>
+                </CPButton>
                 <br />
-                <button
-                  class="btn btn-outline-success mb-2"
-                  @click="this.isDelete = false"
-                >
-                  <SVG
-                    :size="'sm'"
-                    :viewBox="'0 0 512 512'"
-                    :d="'M48.5 224H40c-13.3 0-24-10.7-24-24V72c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2L98.6 96.6c87.6-86.5 228.7-86.2 315.8 1c87.5 87.5 87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3c-62.2-62.2-162.7-62.5-225.3-1L185 183c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8H48.5z'"
-                  />
+                <CPButton btnClass="btn btn-outline-success mb-2" :disabled="this.$store.getters.isLoading" @click="this.isDelete = false">
+                  <SVG :size="'sm'" :viewBox="'0 0 512 512'"
+                    :d="'M48.5 224H40c-13.3 0-24-10.7-24-24V72c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2L98.6 96.6c87.6-86.5 228.7-86.2 315.8 1c87.5 87.5 87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3c-62.2-62.2-162.7-62.5-225.3-1L185 183c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8H48.5z'" />
                   No
-                </button>
+                </CPButton>
                 <p
                   class="text-success text-center mb-0"
                   v-if="this.isDeleteSuccess"
@@ -247,6 +211,7 @@ import SVG from "../UI/SVG.vue";
 import LoadingSpinner from "../UI/LoadingSpinner.vue";
 import CPAlert from "../UI/CPAlert.vue";
 import CPSnackbar from "../UI/CPSnackbar.vue";
+import CPButton from "../UI/CPButton.vue";
 
 export default {
   props: ["customers", "isFetchingData", "fetchError", "fetchCode"],
@@ -267,6 +232,7 @@ export default {
     LoadingSpinner,
     CPAlert,
     CPSnackbar,
+    CPButton,
   },
   mounted() {
     setInterval(() => {
@@ -328,18 +294,8 @@ export default {
 };
 </script>
 <style scoped>
-.btn {
-  width: 300px;
-}
-
 p {
   text-align: start;
-}
-
-@media (max-width: 768px) {
-  .btn {
-    width: 100%;
-  }
 }
 
 /* Declared variable --i is used to dynamically calculate transition time */
