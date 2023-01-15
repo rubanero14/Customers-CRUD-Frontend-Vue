@@ -1,10 +1,30 @@
 <template>
-    <button v-if="this.btnType !== 'link'" class="btn " :type="this.btnType !== 'button' && this.btnType !== 'link' ? this.btnType : 'button'" :class="this.btnClass" :disabled="this.disabled"><slot /></button>
-    <a :href="this.href" class="btn " :class="this.btnClass" target="_blank" :disabled="this.disabled" v-else><slot /></a>
+    <button 
+        v-if="this.btnType !== 'link'" 
+        class="btn " 
+        :type="this.btnType !== 'button'
+            && this.btnType !== 'link'
+            ? this.btnType
+            : 'button'" 
+        :class="this.btnClass" 
+        :disabled="this.disabled"
+    >
+        <slot />
+    </button>
+    <a 
+        :href="this.href" 
+        class="btn " 
+        :class="this.btnClass" 
+        target="_blank" 
+        :disabled="this.disabled" 
+        v-else
+    >
+        <slot />
+    </a>
 </template>
 <script>
 export default {
-    props: ["btnClass", "btnType", "disabled"],
+    props: ["btnClass", "btnType", "disabled", "href"],
 }
 </script>
 <style>
