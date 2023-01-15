@@ -9,15 +9,17 @@ export default {
 }
 </script>
 <style>
+svg.icon {
+    fill: currentColor;
+}
+
 svg.icon.sm {
     width: 16px;
-    fill: currentColor;
     margin-bottom: 0.25rem;
 }
 
 svg.icon.lg {
     width: 20px;
-    fill: currentColor;
     margin-bottom: 0.5rem;
 }
 </style>
