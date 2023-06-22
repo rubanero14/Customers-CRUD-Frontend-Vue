@@ -221,7 +221,7 @@ export default {
       isEditDetail: false,
       isDelete: false,
       isDeleteSuccess: undefined,
-      deleteEndpoint: "http://localhost:3000/deleteUser",
+      deleteEndpoint: this.$store.state.domain + "deleteUser",
     };
   },
   components: {

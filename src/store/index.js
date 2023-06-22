@@ -5,6 +5,7 @@ const store = createStore({
   state() {
     return {
       isLoading: false,
+      domain: "http://localhost:3000/",
     };
   },
   mutations: {

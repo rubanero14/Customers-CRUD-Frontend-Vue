@@ -181,7 +181,7 @@ export default {
   data() {
     return {
       updateEndPoint:
-        "http://localhost:3000/customers/edit/",
+        this.$store.state.domain + "customers/edit/",
       id: this.customer.id,
       firstName: this.customer.firstName,
       lastName: this.customer.lastName,

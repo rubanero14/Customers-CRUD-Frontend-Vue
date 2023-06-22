@@ -47,8 +47,7 @@ export default {
   },
   data() {
     return {
-      getAllCustomersEndpoint:
-        "http://localhost:3000/customers",
+      getAllCustomersEndpoint: this.$store.state.domain + "customers",
       customers: undefined,
       isFetchingData: false,
       fetchCount: 0,
